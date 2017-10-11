@@ -35,9 +35,8 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.engine('hbs', hbs({defaultLayout: 'main', extname: 'hbs'}));
 app.set('view engine', 'hbs');
 
-app.get('/', (req, res)=>{
-    res.render("home.hbs")
-})
+// Load Routes
+require('./routes/router.js')(app)
 
 /****************************************************
  *  Check for login token on every request
