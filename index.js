@@ -31,6 +31,9 @@ app.use(cookieParser());
 //Add bodyParser to App to get post data
 app.use(bodyParser.urlencoded({extended: true}));
 
+// Set up a static directory
+app.use(express.static('public'));
+
 // Setup handlebars view engine and pass in parameters
 app.engine('hbs', hbs({defaultLayout: 'main', extname: 'hbs'}));
 app.set('view engine', 'hbs');
