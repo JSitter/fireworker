@@ -13,6 +13,9 @@ const jwt = require('jsonwebtoken');
 
 const app = express();
 
+//Setup secret key environment variable
+process.env.SECRETKEY = "secretSAlt"
+
 //Require models
 const User = require('./models/user.js')
 
