@@ -23,6 +23,7 @@ module.exports = (app)=>{
     })
 
     app.post('/login', (req, res)=>{
+        console.log("finding user")
         User.findOne({ email: req.body.email }, "+password", function (err, user) {
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
             user.comparePassword(req.body.password, function (err, isMatch) {
