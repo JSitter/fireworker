@@ -33,6 +33,47 @@ app.use(cookieParser());
 
 //Add bodyParser to App to get post data
 app.use(bodyParser.urlencoded({extended: true}));
+//Authenticate Users on every page load
+//This might be unnessesary
+
+/****************************************************
+ *  Check for login token on every request
+ ***************************************************/
+let checkAuth = (req, res, next)=>{
+  
+  console.log("***Mo Auth***");
+
+  if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
+    req.user = null;
+  } else {
+    var token = req.cookies.nToken;
+    
+    //Synchronous verification
+    try{
+      decodedToken = jwt.verify(token, process.env.SECRETKEY)
+      req.user = decodedToken.payload
+    }catch(err){
+      console.log(err.message)
+    }
+    
+    //verify if token is authentic asynchronous
+    // jwt.verify(token, process.env.SECRETKEY, function(err, decodedToken) {
+    //   if(err){
+    //     console.log(err.message)
+    //     res.clearCookie('nToken');
+    //     res.redirect("/")
+    //   }else{
+    //     // verification passed
+    //     req.user = decodedToken.payload;
+    //     console.log("Auth function user", decodedToken)
+    //   }
+    // });      
+  };
+
+  next();
+};
+
+app.use(checkAuth);
 
 // Set up a static directory
 app.use(express.static('public'));
@@ -43,36 +84,6 @@ app.set('view engine', 'hbs');
 
 // Load Routes
 require('./routes/router.js')(app)
-
-/****************************************************
- *  Check for login token on every request
- ***************************************************/
-var checkAuth = function (req, res, next) {
-    
-    console.log("***Mo Auth***");
-  
-    if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
-      req.user = null;
-    } else {
-      var token = req.cookies.nToken;
-      
-      //verify if token is authentic
-      jwt.verify(token, process.env.SECRETKEY, function(err, decodedToken) {
-        if(err){
-          console.log(err.message)
-          res.redirect("/")
-        }else{
-          // verification passed
-          req.user = decodedToken.payload;
-        }
-      });      
-    };
-  
-    next();
-  };
-
-//Authenticate Users on every page load
-app.use(checkAuth);
 
 // Listen on port 8180
 app.listen(8180, function () {
