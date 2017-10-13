@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken');
 
+//Instantiate express
 const app = express();
 
 //Setup secret key environment variable
