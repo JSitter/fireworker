@@ -14,7 +14,7 @@ const jwt = require('jsonwebtoken');
 const app = express();
 
 //Require models
-//need mo models
+const User = require('./models/user.js')
 
 //connect to database
 mongoose.connect('localhost/fireworker');
