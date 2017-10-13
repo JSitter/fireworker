@@ -61,9 +61,10 @@ var checkAuth = function (req, res, next) {
         if(err){
           console.log(err.message)
           res.redirect("/")
+        }else{
+          // verification passed
+          req.user = decodedToken.payload;
         }
-        // verification passed
-        req.user = decodedToken.payload;
       });      
     };
   
