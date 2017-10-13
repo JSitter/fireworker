@@ -1,5 +1,6 @@
 module.exports = (app)=>{
-    User = require('../models/user.js')
+    const User = require('../models/user.js')
+    const jwt = require('jsonwebtoken');
     //Main landing page
     app.get('/', (req, res)=>{
         res.render("home")
