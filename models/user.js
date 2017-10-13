@@ -22,20 +22,20 @@ var UserSchema = new Schema({
  ***************************************************/
 UserSchema.pre('save', function(next){
         
-        // ENCRYPT PASSWORD
-        var user = this;
-        if (!user.isModified('password')) {
-          return next();
-        }
-    
-        //  GENERATE SALT
-        bcrypt.genSalt(10, function(err, salt) {
-          bcrypt.hash(user.password, salt, function(err, hash) {
-            user.password = hash;
-            next();
-          });
-        });
-      });
+  // ENCRYPT PASSWORD
+  var user = this;
+  if (!user.isModified('password')) {
+    return next();
+  }
+
+  //  GENERATE SALT
+  bcrypt.genSalt(10, function(err, salt) {
+    bcrypt.hash(user.password, salt, function(err, hash) {
+      user.password = hash;
+      next();
+    });
+  });
+});
 
 /****************************************************
  *  Compare Password
