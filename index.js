@@ -55,8 +55,16 @@ var checkAuth = function (req, res, next) {
       req.user = null;
     } else {
       var token = req.cookies.nToken;
-      var decodedToken = jwt.decode(token, { complete: true }) || {};
-      req.user = decodedToken.payload;
+      
+      //verify if token is authentic
+      jwt.verify(token, process.env.SECRETKEY, function(err, decodedToken) {
+        if(err){
+          console.log(err.message)
+          res.redirect("/")
+        }
+        // verification passed
+        req.user = decodedToken.payload;
+      });      
     };
   
     next();
