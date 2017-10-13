@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({extended: true}));
  ***************************************************/
 let checkAuth = (req, res, next)=>{
   
-  console.log("***Mo Auth***");
+  
 
   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
     req.user = null;
@@ -50,8 +50,12 @@ let checkAuth = (req, res, next)=>{
     
     //Synchronous verification
     try{
+
       decodedToken = jwt.verify(token, process.env.SECRETKEY)
-      req.user = decodedToken.payload
+      console.log("***Auth***");
+      ///console.log(decodedToken._id)
+      req.user = decodedToken._id
+      //console.log("Auth user", req.user)
     }catch(err){
       console.log(err.message)
     }
