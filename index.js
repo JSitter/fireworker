@@ -41,7 +41,6 @@ app.use(bodyParser.urlencoded({extended: true}));
  *  Check for login token on every request
  ***************************************************/
 let checkAuth = (req, res, next)=>{
-  
   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
     req.user = null;
   } else {
@@ -49,7 +48,6 @@ let checkAuth = (req, res, next)=>{
     
     //Synchronous verification
     try{
-
       decodedToken = jwt.verify(token, process.env.SECRETKEY)
       console.log("***Auth***");
       req.user = decodedToken._id
@@ -57,7 +55,6 @@ let checkAuth = (req, res, next)=>{
       console.log(err.message)
     }   
   };
-
   next();
 };
 

@@ -40,10 +40,18 @@ module.exports = (app)=>{
     })
 
     app.get('/u', (req, res)=>{
-        res.render('user')
+        if(!req.user){
+            res.redirect('/sign-up')
+        }else{
+            res.render('user', {user: "Patrick Stewart"})
+        }
         console.log("user: ",req.user)
-        //console.log(req.cookies)
-        //res.send(res.cookie)
     })
+
+    app.get('/logout', (req, res)=>{
+        res.send("bla no working")
+    })
+
+
 }
 
