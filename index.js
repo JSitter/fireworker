@@ -1,6 +1,6 @@
 /*******************************************
  *  FIREWORKER
- *      THE DATA DISTRINCINERATOR
+ *      THE DATA INCINERATOR
  *  v. 1.0.0 Beta
  ******************************************/
 
@@ -41,8 +41,6 @@ app.use(bodyParser.urlencoded({extended: true}));
  ***************************************************/
 let checkAuth = (req, res, next)=>{
   
-  
-
   if (typeof req.cookies.nToken === 'undefined' || req.cookies.nToken === null) {
     req.user = null;
   } else {
@@ -53,30 +51,16 @@ let checkAuth = (req, res, next)=>{
 
       decodedToken = jwt.verify(token, process.env.SECRETKEY)
       console.log("***Auth***");
-      ///console.log(decodedToken._id)
       req.user = decodedToken._id
-      //console.log("Auth user", req.user)
     }catch(err){
       console.log(err.message)
-    }
-    
-    //verify if token is authentic asynchronous
-    // jwt.verify(token, process.env.SECRETKEY, function(err, decodedToken) {
-    //   if(err){
-    //     console.log(err.message)
-    //     res.clearCookie('nToken');
-    //     res.redirect("/")
-    //   }else{
-    //     // verification passed
-    //     req.user = decodedToken.payload;
-    //     console.log("Auth function user", decodedToken)
-    //   }
-    // });      
+    }   
   };
 
   next();
 };
 
+//Add checkAuth function to middleware
 app.use(checkAuth);
 
 // Set up a static directory
