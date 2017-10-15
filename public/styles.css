@@ -6,6 +6,10 @@
     
 }
 
+header{
+    padding: 30px;
+}
+
 form{
     height: 100%;
 }
