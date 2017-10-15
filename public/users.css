@@ -9,3 +9,8 @@ header{
     flex-direction: column;
     justify-content: space-between;
 }
+
+.user-area{
+    min-height: 300px;
+    background-color: rgb(51, 36, 7);
+}
