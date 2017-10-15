@@ -4,6 +4,10 @@
  *  v. 1.0.0 Beta
  ******************************************/
 
+ //Setup secret key environment variable
+ //This should be handled with better security
+process.env.SECRETKEY = "secretSAlt"
+
 const express = require('express');
 const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
@@ -13,9 +17,6 @@ const jwt = require('jsonwebtoken');
 
 //Instantiate express
 const app = express();
-
-//Setup secret key environment variable
-process.env.SECRETKEY = "secretSAlt"
 
 //Require models
 const User = require('./models/user.js')
