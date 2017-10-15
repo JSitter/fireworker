@@ -74,12 +74,36 @@ body{
     height: 120px;
 }
 
+.signup-block{
+    min-width: 300px;
+    color: #fff;
+    background-color: #333;
+    padding: 90px;
+}
+
 /* Text Styles */
 h1{
     font-weight: normal;
-    font-size: 50px;
+    font-size: 70px;
+}
+
+h2{
+    font-weight: normal;
+    font-size: 70px;
 }
 
 a{
     color: #d1a400
+}
+
+.logo a{ 
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.logo{
+    color: #d1a400;
+    font-weight: bold;
+    font-weight: normal;
+    font-size: 70px;
 }
