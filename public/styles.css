@@ -58,11 +58,11 @@ body{
     justify-content: center;
     align-items: center;
     height: 100%;
-    background-color: #d1a400;
+    background-color: #4d8686;
 }
 .main{
     color: #d1a400;
-    background-color: #333;
+    background-color: #222;
     height: 75%;
     width: 100%;
     margin-bottom: 10%;
@@ -77,11 +77,20 @@ body{
 .signup-block{
     min-width: 300px;
     color: #fff;
-    background-color: #333;
+    background-color: #222;
     padding: 90px;
 }
 
-/* Text Styles */
+.userspace-block{
+    color: #aaa;
+    min-width: 900px;
+    height: 100%;
+    background-color: #222;
+}
+
+/***************** 
+*   Text Styles 
+******************/
 h1{
     font-weight: normal;
     font-size: 70px;
@@ -89,7 +98,7 @@ h1{
 
 h2{
     font-weight: normal;
-    font-size: 70px;
+    font-size: 50px;
 }
 
 a{
@@ -106,4 +115,5 @@ a{
     font-weight: bold;
     font-weight: normal;
     font-size: 70px;
+    margin: 0px 0px 40px 0px;
 }
