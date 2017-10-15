@@ -1,0 +1,49 @@
+*{
+    font-family: Helvetica;
+    padding: 0px;
+    margin: 0px;
+    font-weight: lighter;
+    
+}
+
+button{
+    height: 40px;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+input{
+    height: 40px;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+html{
+    height: 100%;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-color: #d1a400;
+}
+.main{
+    color: #d1a400;
+    background-color: #333;
+    height: 75%;
+    width: 100%;
+    margin-bottom: 10%;
+    padding: 60px;
+}
+
+.login-block{
+    padding: 20px;
+}
+
+/* Text Styles */
+h1{
+    font-weight: normal;
+    font-size: 50px;
+}
