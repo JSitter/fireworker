@@ -61,25 +61,36 @@ module.exports = (app)=>{
     });
 
     app.get('/offer', (req, res)=>{
-        res.render('offer-document');
+        if(!req.user){
+            res.redirect('/login');
+        }else{
+            res.render('offer-document');
+        }
+        
     })
 
     app.post('/vaultgate', (req, res)=>{
+        
+        if(!req.user){
+            res.status(401).send('User not logged in.');
+        }else{
 
-        if (!req.files)
-        return res.status(400).send('No files were uploaded.');
-        console.log("This file is " + __filename);
-        console.log("It's located in " + __dirname);
-        // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-        let userFile = req.files.userDocument;
-        console.log(+new Date)
-        // Use the mv() method to place the file somewhere on your server
-        console.log(userFile.name)
-        userFile.mv(__dirname + '/../imgs/'+ +new Date + ".jpg", function(err) {
-        if (err)
-          return res.status(500).send(err);
-            res.send('File uploaded!');
-        });
+            if (!req.files)
+            return res.status(400).send('No files were uploaded.');
+            console.log("This file is " + __filename);
+            console.log("It's located in " + __dirname);
+            // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+            let userFile = req.files.userDocument;
+            console.log(+new Date)
+            // Use the mv() method to place the file somewhere on your server
+            console.log(userFile.name)
+
+            userFile.mv(__dirname + '/../uservault/'+ +new Date + ".jpg", function(err) {
+            if (err)
+            return res.status(500).send(err);
+                res.send('File uploaded!');
+            });
+        }
     });
 }
 
