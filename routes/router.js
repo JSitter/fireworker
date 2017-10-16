@@ -3,15 +3,25 @@ module.exports = (app)=>{
     const Record = require('../models/record.js')
     const jwt = require('jsonwebtoken');
 
+/****************************************************
+ *  Main landing page
+ ***************************************************/
     //Main landing page
     app.get('/', (req, res)=>{
         res.render("home")
     })
 
+/****************************************************
+ *  User Signup
+ ***************************************************/
+    //User Signup
     app.get('/sign-up', (req, res)=>{
         res.render("sign-up")
     })
 
+/****************************************************
+ *  Retrieve Post signup data
+ ***************************************************/
     app.post('/signup', (req, res)=>{
         const user = new User(req.body);
 
@@ -24,6 +34,9 @@ module.exports = (app)=>{
         }).catch()
     })
 
+/****************************************************
+ *  User Login
+ ***************************************************/
     app.post('/login', (req, res)=>{
         User.findOne({ email: req.body.email }, "+password", function (err, user) {
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
@@ -41,6 +54,9 @@ module.exports = (app)=>{
           });
     });
 
+/****************************************************
+ *  User home page
+ ***************************************************/
     app.get('/u', (req, res)=>{
         if(!req.user){
             res.redirect('/sign-up');
@@ -50,16 +66,25 @@ module.exports = (app)=>{
         console.log("user: ",req.user)
     })
 
+/****************************************************
+ * Logout User
+ ***************************************************/
     app.get('/logout', (req, res)=>{
         res.clearCookie('nToken');
         res.redirect('/');
     })
 
+/****************************************************
+ *  User Login redirect
+ ***************************************************/
     app.get('/login', (req, res)=>{
         res.clearCookie('nToken');
         res.redirect('/');
     });
 
+/****************************************************
+ *  User Save Document
+ ***************************************************/
     app.get('/offer', (req, res)=>{
         if(!req.user){
             res.redirect('/login');
@@ -69,9 +94,9 @@ module.exports = (app)=>{
         
     })
 
-    /**************************************
-     *  Post Save User Binary Record
-     **************************************/
+/**************************************
+ *  Post Save User Record
+ **************************************/
     app.post('/vaultgate', (req, res)=>{
         
         if(!req.user){
