@@ -8,7 +8,7 @@
 
 const UserBinaryRecord = new Schema({
     local_address   : { type: String, required: true},
-    user_owner      : { type: String},
+    owner_id      : { type: String},
     user_filename   : { type: String}
 });
 

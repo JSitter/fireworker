@@ -1,6 +1,8 @@
 module.exports = (app)=>{
     const User = require('../models/user.js')
+    const Record = require('../models/record.js')
     const jwt = require('jsonwebtoken');
+
     //Main landing page
     app.get('/', (req, res)=>{
         res.render("home")
@@ -70,7 +72,7 @@ module.exports = (app)=>{
     })
 
     /**************************************
-     *  Post Save User Record
+     *  Post Save User Binary Record
      **************************************/
     app.post('/vaultgate', (req, res)=>{
         
@@ -85,11 +87,16 @@ module.exports = (app)=>{
             // The name of the input field is used to retrieve the uploaded file
             let userFile = req.files.userDocument;
 
-            let userFileName = userFile.name
-            let userID = req.user._id
+            const user_filename = userFile.name
+            const owner_id = req.user
+            const local_address = +new Date + ".jpg"
 
             console.log("filename: ", userFileName)
             console.log("userid", userID)
+            console.log("local filename:", localFilename)
+
+            let userRecord = new Record({local_address, owner_id, user_filename})
+
             // Use the mv() method to place file on server
             // THIS BLOCK WORKS COMMENTED OUT FOR DEV PURPOSES
             // userFile.mv(__dirname + '/../uservault/'+ +new Date + ".jpg", function(err) {
