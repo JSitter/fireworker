@@ -68,16 +68,18 @@ module.exports = (app)=>{
 
         if (!req.files)
         return res.status(400).send('No files were uploaded.');
-     
+        console.log("This file is " + __filename);
+        console.log("It's located in " + __dirname);
         // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-        //let sampleFile = req.files.userDocument;
+        let userFile = req.files.userDocument;
         console.log(+new Date)
         // Use the mv() method to place the file somewhere on your server
-       // sampleFile.mv('/imgs/filename.jpg', function(err) {
-        //if (err)
-        //  return res.status(500).send(err);
-     
-        res.send('File uploaded!');
-      });
+        console.log(userFile.name)
+        userFile.mv(__dirname + '/../imgs/'+ +new Date + ".jpg", function(err) {
+        if (err)
+          return res.status(500).send(err);
+            res.send('File uploaded!');
+        });
+    });
 }
 
