@@ -14,7 +14,8 @@ var UserSchema = new Schema({
     email           : { type: String, required: true},
     password        : { type: String, select: false },
     fname           : { type: String },
-    lname           : { type: String }
+    lname           : { type: String },
+    records         : [{ type: Schema.Types.ObjectId, ref: 'Record' }]
 });
 
 /****************************************************
