@@ -6,5 +6,5 @@ Fireworker is a web app that allows for the secure sending and retrieval of sens
 
 * Check if username/email already exists in database
 * Check on page load if token user id exists in database
-* Check that user can't upload no files
+* Check that user can't submit record with no files selected
 
