@@ -109,45 +109,42 @@ module.exports = (app)=>{
             // console.log("It's located in " + __dirname);
             // The name of the input field is used to retrieve the uploaded file
 
-
-
-
-            
-
             //save user
             let user; 
             const owner_id = req.user
-
-            User.findById(owner_id).then((u)=>{
-                user = u;
-                const userFile = req.files.userDocument;
-                const user_filename = userFile.name
-
-                const local_address = +new Date + ".jpg"
-
-                console.log("filename: ", user_filename)
-                console.log("userid", owner_id)
-                console.log("local filename:", local_address)
-
-
-                let userRecord = new Record({local_address, owner_id, user_filename})
-                return userRecord.save()
-            }).then((record)=>{
-                user.records.unshift(record);
-                return user.save()
-            }).then(()=>{
-                res.redirect('/u')
-            }).catch((err)=>{
-                console.log(err.message)
-            })       
+            const userFile = req.files.userDocument;
+            const local_address = +new Date + ".jpg"
 
             // Use the mv() method to place file on server
             // THIS BLOCK WORKS COMMENTED OUT FOR DEV PURPOSES
-            // userFile.mv(__dirname + '/../uservault/'+ +new Date + ".jpg", function(err) {
-            // if (err)
-            // return res.status(500).send(err);
-            //     res.send('File uploaded!');
-            // });
+
+            userFile.mv(__dirname + '/../uservault/'+ local_address, function(err) {
+                if (err)
+                return res.status(500).send(err);
+                
+                    User.findById(owner_id).then((u)=>{
+                        user = u;
+                        
+                        const user_filename = userFile.name
+
+                        // console.log("filename: ", user_filename)
+                        // console.log("userid", owner_id)
+                        // console.log("local filename:", local_address)
+        
+                        let userRecord = new Record({local_address, owner_id, user_filename})
+                        return userRecord.save()
+                    }).then((record)=>{
+                        user.records.unshift(record);
+                        return user.save()
+                    }).then(()=>{
+                        res.redirect('/u')
+                    }).catch((err)=>{
+                        console.log(err.message)
+                    })   
+                
+                });
+            
+    
         }
     });
 }
