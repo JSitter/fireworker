@@ -61,9 +61,9 @@ module.exports = (app)=>{
         if(!req.user){
             res.redirect('/sign-up');
         }else{
-            User.findById(req.user).then((u)=>{
+            User.findById(req.user).populate('record').then((u)=>{
                 console.log(u)
-                res.render('user', {user: user, record:record});
+                res.render('user', {u});
             }).catch((err)=>{
                 console.log("user page error: ",err.message)
             })
