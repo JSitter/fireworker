@@ -14,9 +14,13 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken');
+const fileUpload = require('express-fileupload');
 
 //Instantiate express
 const app = express();
+
+// use default options
+app.use(fileUpload());
 
 //Require models
 const User = require('./models/user.js')
