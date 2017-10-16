@@ -11,7 +11,11 @@
             This would be a good spot for some content. Perhaps adding some documentation in the project's readme.
         </p>
         <section class="user-docs">
-            user doc section
+            {{#each user.records}}
+                <div>
+                   <p>{{this.records.user_filename}}</p>
+                </div>
+            {{/each}}
         </section>
 
         <a href="/upload">Upload Document</a>
