@@ -24,8 +24,6 @@ module.exports = (app)=>{
         }).catch()
     })
 
-
-
     app.post('/login', (req, res)=>{
         User.findOne({ email: req.body.email }, "+password", function (err, user) {
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
