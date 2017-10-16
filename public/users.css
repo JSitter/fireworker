@@ -21,14 +21,27 @@ header{
     height: 40px;
     width : 300px;
     background-color: #555;
-    margin: 2px;
+    margin: 3px;
     line-height: 40px;
     padding: 5px;
     text-align: center;
     list-style-type: none;
     cursor: default;
+    border-radius: 5px;
 }
 
 .user-docs ul{
     margin: 10px 0px 10px 0px;
+}
+
+.add-transfer{
+    border-radius: 5px;
+    height: 30px;
+    width: 30px;
+    background-color: rgb(5, 154, 180);
+    position: absolute;
+    color: white;
+    line-height: 30px;
+    margin: -35px 0px 0px 310px;
+
 }
