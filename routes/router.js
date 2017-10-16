@@ -22,6 +22,8 @@ module.exports = (app)=>{
         }).catch()
     })
 
+
+
     app.post('/login', (req, res)=>{
         User.findOne({ email: req.body.email }, "+password", function (err, user) {
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
@@ -36,14 +38,14 @@ module.exports = (app)=>{
               
               res.redirect('/u');
             });
-          })
-    })
+          });
+    });
 
     app.get('/u', (req, res)=>{
         if(!req.user){
-            res.redirect('/sign-up')
+            res.redirect('/sign-up');
         }else{
-            res.render('user', {user: "Patrick Stewart"})
+            res.render('user', {user: "Patrick Stewart"});
         }
         console.log("user: ",req.user)
     })
@@ -52,6 +54,11 @@ module.exports = (app)=>{
         res.clearCookie('nToken');
         res.redirect('/');
     })
+
+    app.get('/login', (req, res)=>{
+        res.clearCookie('nToken');
+        res.redirect('/');
+    });
 
 
 }
