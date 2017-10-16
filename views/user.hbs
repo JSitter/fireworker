@@ -13,7 +13,7 @@
         <section class="user-docs">
             <ul>
                 {{#each user.records}}
-                    <li>{{this.user_filename}}{{>addTransfer this}}</li>
+                    <li><div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}</li>
                 {{/each}}
             </ul>
         </section>

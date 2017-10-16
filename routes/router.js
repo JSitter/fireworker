@@ -83,7 +83,7 @@ module.exports = (app)=>{
     })
 
 /****************************************************
- *  User Login redirect
+ *  Login redirect
  ***************************************************/
     app.get('/login', (req, res)=>{
         res.clearCookie('nToken');
@@ -91,7 +91,7 @@ module.exports = (app)=>{
     });
 
 /****************************************************
- *  User Save Document
+ *  Save User Document
  ***************************************************/
     app.get('/upload', (req, res)=>{
         if(!req.user){
@@ -102,7 +102,7 @@ module.exports = (app)=>{
     })
 
 /**************************************
- *  Post Save User Record
+ *  Post Handle User Record Submission
  **************************************/
     app.post('/vaultgate', (req, res)=>{
         

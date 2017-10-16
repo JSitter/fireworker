@@ -18,9 +18,36 @@ header{
 }
 
 .user-docs li{
+
+}
+
+.user-docs ul{
+    list-style: none;
+    margin: 10px 0px 10px 0px;
+}
+
+.add-transfer{
+
+    height: 30px;
+    width: 30px;
+    
+    
+    color: white;
+    line-height: 30px;
+    display: block;
+    text-decoration: none;
+}
+
+.add-to-transfer, .record-name{
+    border-radius: 5px;
+    background-color: rgb(5, 154, 180);
+    display: inline-block;
+    
+}
+
+.record-name{
     height: 40px;
     width : 300px;
-    background-color: #555;
     margin: 3px;
     line-height: 40px;
     padding: 5px;
@@ -28,20 +55,13 @@ header{
     list-style-type: none;
     cursor: default;
     border-radius: 5px;
+    background-color: #555;
 }
 
-.user-docs ul{
-    margin: 10px 0px 10px 0px;
+a>abbr{
+    text-align: center;
 }
 
-.add-transfer{
-    border-radius: 5px;
-    height: 30px;
-    width: 30px;
-    background-color: rgb(5, 154, 180);
-    position: absolute;
-    color: white;
-    line-height: 30px;
-    margin: -35px 0px 0px 310px;
-
+a.add-to-transfer:active{
+    background-color: pink;
 }
