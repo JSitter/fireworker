@@ -60,6 +60,9 @@ module.exports = (app)=>{
         res.redirect('/');
     });
 
+    app.get('/offer', (req, res)=>{
+        res.render('offer-document');
+    })
 
 }
 
