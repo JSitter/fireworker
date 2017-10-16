@@ -108,17 +108,32 @@ module.exports = (app)=>{
             // console.log("This file is " + __filename);
             // console.log("It's located in " + __dirname);
             // The name of the input field is used to retrieve the uploaded file
-            let userFile = req.files.userDocument;
 
-            const user_filename = userFile.name
-            const owner_id = req.user
-            const local_address = +new Date + ".jpg"
 
             console.log("filename: ", userFileName)
             console.log("userid", userID)
             console.log("local filename:", localFilename)
 
-            let userRecord = new Record({local_address, owner_id, user_filename})
+            
+
+            //save user
+            let user; 
+
+            User.findById(owner_id).then((u)=>{
+                user = u;
+
+                const userFile = req.files.userDocument;
+                const user_filename = userFile.name
+                const owner_id = req.user
+                const local_address = +new Date + ".jpg"
+                let userRecord = new Record({local_address, owner_id, user_filename})
+                return userRecord.save()
+            }).then((record)=>{
+                user.records.unshift(comment);
+                return user.save()
+            }).then(()=>{
+                res.redirect('/u')
+            })       
 
             // Use the mv() method to place file on server
             // THIS BLOCK WORKS COMMENTED OUT FOR DEV PURPOSES
