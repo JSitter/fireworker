@@ -85,7 +85,7 @@ module.exports = (app)=>{
 /****************************************************
  *  User Save Document
  ***************************************************/
-    app.get('/offer', (req, res)=>{
+    app.get('/upload', (req, res)=>{
         if(!req.user){
             res.redirect('/login');
         }else{
