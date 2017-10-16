@@ -66,7 +66,7 @@ let checkAuth = (req, res, next)=>{
 //Add checkAuth function to middleware
 app.use(checkAuth);
 
-// Set up a static directory
+// Set up a static public directory
 app.use(express.static('public'));
 
 // Setup handlebars view engine and pass in parameters
