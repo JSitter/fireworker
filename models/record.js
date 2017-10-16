@@ -13,4 +13,4 @@ const Record = new Schema({
     user_filename   : { type: String}
 });
 
-module.exports = mongoose.model('UserBinaryRecord', Record);
+module.exports = mongoose.model('Record', Record);
