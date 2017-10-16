@@ -9,3 +9,5 @@ var Transfer = new Schema({
     token           : { type: String },
     records         : [{ type: Schema.Types.ObjectId, ref: 'Record' }]
 });
+
+module.exports = mongoose.model('Transfer', Transfer);
