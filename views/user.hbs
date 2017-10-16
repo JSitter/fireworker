@@ -5,17 +5,17 @@
     </header>
     <section class="user-area">
         <h3>
-            Hello {{user}},
+            Hello {{user.fname}},
         </h3>
         <p>
             This would be a good spot for some content. Perhaps adding some documentation in the project's readme.
         </p>
         <section class="user-docs">
-            {{#each user.records}}
-                <div>
-                   <p>{{this.records.user_filename}}</p>
-                </div>
-            {{/each}}
+            <ul>
+                {{#each user.records}}
+                    <li>{{this.user_filename}}</li>
+                {{/each}}
+            </ul>
         </section>
 
         <a href="/upload">Upload Document</a>
