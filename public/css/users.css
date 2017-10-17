@@ -23,25 +23,18 @@ header{
 }
 
 .add-transfer{
+    background-color: white;
+    border-radius : 25px;
     cursor: default;
-    height: 30px;
-    width: 30px;    
-    color: white;
+    color: rgb(5, 154, 180);
     line-height: 30px;
     display: block;
     text-decoration: none;
-    overflow: hidden;
 }
 
 .add-to-transfer, .record-name{
-    width: 40px;
-    height: 40px;
-    border-radius: 35px;
-    background-color: rgb(5, 154, 180);
-    display: inline-block;
-    padding: 5px 0px 0px 7px;
-
-    
+    color: white;
+    display: inline-block;    
 }
 
 .record-name{
