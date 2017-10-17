@@ -17,21 +17,15 @@ header{
     padding: 50px;
 }
 
-.user-docs li{
-
-}
-
 .user-docs ul{
     list-style: none;
     margin: 10px 0px 10px 0px;
 }
 
 .add-transfer{
-
+    cursor: default;
     height: 30px;
-    width: 30px;
-    
-    
+    width: 30px;    
     color: white;
     line-height: 30px;
     display: block;
