@@ -20,3 +20,18 @@ let toggleTransfer = (id)=>{
     }
 
 }
+
+let getDocLink = ()=>{
+
+    $.ajax({
+        type: 'POST',
+        url: '/tokenate',
+        data: transferItems,
+        success: (address)=>{
+            alert(address)
+        },
+        error: (err)=>{
+            alert(err.message)
+        }
+    })
+}

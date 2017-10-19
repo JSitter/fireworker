@@ -163,7 +163,7 @@ module.exports = (app)=>{
      ********************************************/
 
      app.post('/tokenate', (req, res)=>{
-         
+         console.log(req.body)
      })
 }
 
