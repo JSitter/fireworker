@@ -7,9 +7,3 @@ addToTransfer = (id)=>{
     $(dataid).toggleClass('selected');
 
 }
-
-$('body').on('click', '.add-to-transfer', function(e) {
-    // $(this).siblings('.record-name').addClass('selected');
-    // $(this).siblings('.record-name').removeClass('selected');
-    $(this).siblings('.record-name').toggleClass('selected');
-   });
