@@ -164,12 +164,22 @@ module.exports = (app)=>{
 
      app.post('/tokenate', (req, res)=>{
          if(!req.user){
-             res.redirect("/")
+             console.log("Invalid user credentials.")
+             res.send("Unable to authenticate user.")
          }else{
-            console.log("user", req.user)
+            console.log("ajax user:", req.user)
             console.log("body", req.body)
+            res.send('test')
          }
 
      })
+
+    /*********************************************
+     *  /access/:token
+     *      Access user's documents
+     ********************************************/
+    app.get('/access/:token', (req,res)=>{
+        res.redirect('/')
+    })
 }
 

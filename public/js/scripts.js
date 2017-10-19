@@ -31,8 +31,8 @@ let getDocLink = ()=>{
             alert(address)
         },
         error: function (xhr, ajaxOptions, thrownError) { //Add these parameters to display the required response
-            alert(xhr.status);
-            alert(xhr.responseText);
+            //alert(xhr.status);
+            alert("Error: ", ajaxOptions);
         },
     })
 }
