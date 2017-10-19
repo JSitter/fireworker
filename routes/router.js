@@ -122,8 +122,6 @@ module.exports = (app)=>{
             const local_address = +new Date + ".jpg"
 
             // Use the mv() method to place file on server
-            // THIS BLOCK WORKS COMMENTED OUT FOR DEV PURPOSES
-
             userFile.mv(__dirname + '/../uservault/'+ local_address, function(err) {
                 if (err)
                 return res.status(500).send(err);
