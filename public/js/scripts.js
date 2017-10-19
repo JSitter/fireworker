@@ -1,13 +1,14 @@
 var transferItems = {}
 
 clickket = ()=>{
-    console.log(transferItems)
-    alert(transferItems)
+    console.log("this.transferItems")
+    alert(JSON.stringify(transferItems))
 }
 
 addToTransfer = (id)=>{
     dataid = "li[data-id='"+id+"']"
     $(dataid).toggleClass('record-selected');
+    toggleTransfer(id)
 
 }
 
