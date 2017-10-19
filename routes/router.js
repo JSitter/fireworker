@@ -1,7 +1,8 @@
 module.exports = (app)=>{
     const User = require('../models/user.js')
     const Record = require('../models/record.js')
-    const jwt = require('jsonwebtoken');
+    const jwt = require('jsonwebtoken')
+    const fs = require('fs')
 
 /****************************************************
  *  Main landing page
@@ -120,9 +121,15 @@ module.exports = (app)=>{
             const owner_id = req.user
             const userFile = req.files.userDocument;
             const local_address = +new Date + ".jpg"
+            const local_dir = __dirname + '/../uservault/'
+
+            //Check if user vault file exists and if not then make it
+            if (!fs.existsSync(local_dir)){
+                fs.mkdirSync(local_dir);
+            }
 
             // Use the mv() method to place file on server
-            userFile.mv(__dirname + '/../uservault/'+ local_address, function(err) {
+            userFile.mv(local_dir + local_address, function(err) {
                 if (err)
                 return res.status(500).send(err);
                 
