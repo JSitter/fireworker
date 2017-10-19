@@ -155,5 +155,15 @@ module.exports = (app)=>{
                 });
         }
     });
+
+    /*********************************************
+     *  /tokenate 
+     *      Gets (via POST) ids of docs to make available
+     *      and returns link to retrieve them
+     ********************************************/
+
+     app.post('/tokenate', (req, res)=>{
+         
+     })
 }
 
