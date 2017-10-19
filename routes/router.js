@@ -60,7 +60,7 @@ module.exports = (app)=>{
  ***************************************************/
     app.get('/u', (req, res)=>{
         if(!req.user){
-            res.redirect('/sign-up');
+            res.redirect('/');
         }else{
             User.findById(req.user).populate(
                'records'
