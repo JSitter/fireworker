@@ -163,7 +163,13 @@ module.exports = (app)=>{
      ********************************************/
 
      app.post('/tokenate', (req, res)=>{
-         console.log(req.body)
+         if(!req.user){
+             res.redirect("/")
+         }else{
+            console.log("user", req.user)
+            console.log("body", req.body)
+         }
+
      })
 }
 
