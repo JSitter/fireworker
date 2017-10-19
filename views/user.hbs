@@ -4,22 +4,27 @@
         {{>menu}}
     </header>
     <section class="user-area">
+        {{!-- User Header Area --}}
         <h3>
             Hello {{user.fname}},
         </h3>
         <p>
             This would be a good spot for some content. Perhaps adding some documentation in the project's readme.
         </p>
+        {{!-- User Documents --}}
         <section class="user-docs">
             <ul>
                 {{#each user.records}}
                     <li class="record-item" data-id="{{this._id}}"><div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}</li>
                 {{/each}}
             </ul>
+
         </section>
 
         <a href="/upload">Upload Document</a>
+
     </section>
+    {{!-- Footer Area --}}
     <footer>
         Please send us money.
     </footer>
