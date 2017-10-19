@@ -1,9 +1,21 @@
+var transferItems = {}
+
 clickket = ()=>{
-    alert("Unhandled Exception: Source not available. Try Donating money first.")
+    console.log(transferItems)
+    alert(transferItems)
 }
 
 addToTransfer = (id)=>{
     dataid = "li[data-id='"+id+"']"
-    $(dataid).toggleClass('selected');
+    $(dataid).toggleClass('record-selected');
+
+}
+
+let toggleTransfer = (id)=>{
+    if(transferItems[id]){
+        delete transferItems[id]
+    }else{
+        transferItems[id] = 1
+    }
 
 }

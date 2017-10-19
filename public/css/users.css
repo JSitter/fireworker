@@ -68,3 +68,8 @@ a:active>abbr>i{
 .pabs{
     position: absolute;
 }
+
+.record-selected>div{
+    background-color: #d4b501;
+    color: white;
+}
