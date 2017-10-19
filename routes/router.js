@@ -30,7 +30,7 @@ module.exports = (app)=>{
             // Encode JWT and set cookie
             var token = jwt.sign({ _id: user._id }, process.env.SECRETKEY, { expiresIn: "60 days" });
             res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-            res.redirect('/');
+            res.redirect('/u');
         }).catch()
     })
 
