@@ -31,7 +31,7 @@ let getDocLink = ()=>{
             alert(address)
         },
         error: (err)=>{
-            alert(err.message)
+            alert(err)
         }
     })
 }
