@@ -7,7 +7,7 @@ const Schema = mongoose.Schema;
 var Transfer = new Schema({
     owner_id        : { type: Schema.Types.ObjectId, ref: 'User'},
     transfer_to     : { type: Schema.Types.ObjectId, ref: 'Contact'},
-    token           : { type: String },
+    sec_token       : { type: String },
     valid_time      : { type: String },
     records         : [{ type: Schema.Types.ObjectId, ref: 'Record' }]
 });

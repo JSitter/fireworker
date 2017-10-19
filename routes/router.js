@@ -123,7 +123,7 @@ module.exports = (app)=>{
             const local_address = +new Date + ".jpg"
             const local_dir = __dirname + '/../uservault/'
 
-            //Check if user vault file exists and if not then make it
+            //Check make directory uservault if it doesn't exist
             if (!fs.existsSync(local_dir)){
                 fs.mkdirSync(local_dir);
             }
