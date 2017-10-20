@@ -91,11 +91,6 @@ body{
     padding: 90px;
 }
 
-ul.docs-block{
-    margin-top: 40px;
-    margin-bottom: 40px;
-}
-
 .userspace-block{
     color: #aaa;
     min-width: 900px;
