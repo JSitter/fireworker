@@ -172,9 +172,6 @@ module.exports = (app)=>{
              console.log("Invalid user credentials.")
              res.send("Unable to authenticate user.")
          }else{
-             //Create Security Token
-
-
             //save data for transfer record
             const owner_id = req.user
             const valid_time = +Date
@@ -192,49 +189,10 @@ module.exports = (app)=>{
             for(key in record_ids){
                 t.records.unshift(key)
                 t.save()
-                // Record.findById(key).then((r)=>{
-                //     console.log("consolr record", r)
-                //     r.transfer_sheets.unshift(t._id)
-                //     r.save()
-                // })
             }
             console.log("transfer sec token", t.sec_token)
             res.send( web_address + '/access/' + t.sec_token)
 
-            // t.save().then((tr)=>{
-            //     transfer = tr
-            //     for( key in record_ids ){
-            //         transfer.records.unshift(key)
-            //         transfer.save()
-            //     }
-            // })
-
-            // User.findById(owner_id).then((u)=>{
-            //     user = u
-            //     //Create new Transfer record
-            //     transfer = new Transfer({owner_id, valid_time, sec_token});
-            //     return transfer.save()
-            // }).then((t)=>{
-            //     transfer = t
-            //     for( key in record_ids){
-            //         Record.findById(key).then((r)=>{
-            //             console.log("record Id:",r._id)
-            //             transfer.records.push(r)
-            //         })
-                    
-            //     }
-            // }).catch((err)=>{
-            //     console.log(err.message)
-            // })
-
-            // .then((t)=>{
-            //     for( key in record_ids ){
-            //         //push all record ids to transfer sheet
-            //         console.log("record key:",key)
-            //         console.log("t id", t._id)
-            //         t.records.push(key)
-            //     }
-            // })
          }
 
      })
