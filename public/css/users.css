@@ -79,7 +79,7 @@ a:active>abbr>i{
     position: absolute;
     visibility: hidden;
     position: relative;
-    background-color: rgba(3, 162, 184, .95);
+    background-color: rgba(4, 176, 189, 0.92);
     color: white;
     width: 600px;
     height: 300px;
