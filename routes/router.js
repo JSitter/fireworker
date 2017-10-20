@@ -178,19 +178,48 @@ module.exports = (app)=>{
             const owner_id = req.user
             const valid_time = +Date
             const record_ids = req.body
+            let transfer
+            let user
 
             //Create Security Token
             let token = jwt.sign({ owner_id, valid_time, record_ids }, process.env.SECRETKEY, { expiresIn: "60 days" })
             token = token.split('.')
             sec_token = token[2]
-            //Create new Transfer record
-            transfer = new Transfer({owner_id, valid_time, sec_token});
-            transfer.save().then((t)=>{
+
+            t = new Transfer({owner_id}, sec_token, valid_time)
+            t.save().then((tr)=>{
+                transfer = tr
                 for( key in record_ids ){
-                    //push all record ids to transfer sheet
-                    t.records.unshift(key)
+                    transfer.records.unshift(key)
                 }
             })
+
+            // User.findById(owner_id).then((u)=>{
+            //     user = u
+            //     //Create new Transfer record
+            //     transfer = new Transfer({owner_id, valid_time, sec_token});
+            //     return transfer.save()
+            // }).then((t)=>{
+            //     transfer = t
+            //     for( key in record_ids){
+            //         Record.findById(key).then((r)=>{
+            //             console.log("record Id:",r._id)
+            //             transfer.records.push(r)
+            //         })
+                    
+            //     }
+            // }).catch((err)=>{
+            //     console.log(err.message)
+            // })
+
+            // .then((t)=>{
+            //     for( key in record_ids ){
+            //         //push all record ids to transfer sheet
+            //         console.log("record key:",key)
+            //         console.log("t id", t._id)
+            //         t.records.push(key)
+            //     }
+            // })
 
 
             //get number of records to insert
