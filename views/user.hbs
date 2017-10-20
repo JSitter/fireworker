@@ -13,7 +13,7 @@
         </p>
         {{!-- User Documents --}}
         <section class="user-docs">
-
+                <a href="/upload" >Upload Document</a>
                 <ul>
                     {{#each user.records}}
                         <li class="record-item" data-id="{{this._id}}"><div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}</li>
@@ -21,11 +21,16 @@
                 </ul>
                 <button class="get-transfer-link" onclick="getDocLink()">Get single use link</button>
                 <br/>
-                <a href="/upload" >Upload Document</a>
+                
 
         </section>
         <section class="url-share">
-            http:///www
+            <abbr title="Close"> <i class="fa fa-times-circle fa-2x text-white close-icn pabs" aria-hidden="true" onclick="closeLink()"></i></abbr>
+            <div class="user-link">
+                <h3>One time use link:</h3>
+                <p>Send this link to the party that should recieve these documents.</p>
+                <div class="single-use-link"> http//www.reddit.com/r/politics</div>
+            </div>
         </section>
     </section>
     {{!-- Footer Area --}}

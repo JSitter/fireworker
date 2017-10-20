@@ -18,6 +18,11 @@ button{
     border: none;
     color: #fff;
     margin: 5px;
+    border-radius: 20px;
+}
+button:hover{
+    background-color: rgb(112, 238, 215);
+    color: #444;
 }
 
 input{
