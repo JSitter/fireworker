@@ -192,8 +192,13 @@ module.exports = (app)=>{
             for(key in record_ids){
                 t.records.unshift(key)
                 t.save()
+                Record.findById(key).then((r)=>{
+                    console.log("consolr record", r)
+                    r.transfer_sheets.unshift(t._id)
+                    r.save()
+                })
             }
-            console.log(t.sec_token)
+            console.log("transfer sec token", t.sec_token)
             res.send( web_address + '/access/' + t.sec_token)
 
             // t.save().then((tr)=>{
@@ -231,23 +236,6 @@ module.exports = (app)=>{
             //     }
             // })
 
-
-            //get number of records to insert
-            total_records = Object.keys(req.body).length
-            
-            //get record ids from user
-             for( index in req.body ){
-                 //add document id to transfer record
-
-                 
-             }
-            // console.log("records array:", records[0]._id)
-
-            //console.log("body", req.body)
-
-
-
-            res.send('test')
          }
 
      })
@@ -259,13 +247,17 @@ module.exports = (app)=>{
     app.get('/access/:token', (req,res)=>{
         token = req.params.token
         console.log("token", token)
-        Transfer.find({ sec_token: token}, (err, transfer)=>{
-            if(err){
-                console.log(err.message)
-            }
+        Transfer.find({ sec_token: token}).populate('records').then((transfer)=>{
+
+            // transfer.populate('records').then((t)=>{
+            //     console.log("populated t", t)
+            // })
+
             console.log("transfer sheet", transfer)
             console.log("transfer id", transfer._id)
-            res.render('download', {transfer})
+            res.render('download', { transfer: transfer })
+        }).catch((err)=>{
+            console.log("error getting transfer sheet:", err.message)
         })
 
     })
