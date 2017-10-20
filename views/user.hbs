@@ -14,13 +14,22 @@
         {{!-- User Documents --}}
         <section class="user-docs">
                 <a href="/upload" >Upload Document</a>
-                <ul class="docs-block">
-                    {{#each user.records}}
-                        <li class="record-item" data-id="{{this._id}}"><div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}</li>
-                    {{/each}}
-                </ul>
-                <button class="get-transfer-link" onclick="getDocLink()">Get single use link</button>
-                <br/>
+                <div class="ul-wrapper">
+                    <ul class="docs-block fl-lt">
+                        {{#each user.records}}
+                            <li class="record-item" data-id="{{this._id}}"><div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}</li>
+                        {{/each}}
+                    </ul>
+                    <ul class="docs-block fl-rt">
+                        <li>
+                            {{!-- add transfer sheet items here --}}
+                            hello
+                        </li>
+                    </ul>
+                    <div class="clear"></div>
+                </div>
+                <button class="get-transfer-link clear" onclick="getDocLink()">Get single use link</button>
+           
                 
 
         </section>
