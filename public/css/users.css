@@ -111,3 +111,10 @@ a:active>abbr>i{
     font-weight: normal;
     font-size: 30px;
 }
+
+input.single-use-link{
+    width: 500px;
+    text-align: center;
+    margin: 30px 0px 30px 50px;
+    height: 50px;
+}
