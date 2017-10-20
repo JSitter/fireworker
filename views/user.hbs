@@ -18,7 +18,9 @@
                 <div class="ul-wrapper">
                     <ul class="docs-block fl-lt">
                         {{#each user.records}}
-                            <li class="record-item" data-id="{{this._id}}"><div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}</li>
+                            <li class="record-item" data-id="{{this._id}}">
+                                <div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}
+                            </li>
                         {{/each}}
                     </ul>
                     <ul class="docs-block fl-rt">
