@@ -187,12 +187,19 @@ module.exports = (app)=>{
             sec_token = token[2]
 
             t = new Transfer({owner_id}, sec_token, valid_time)
-            t.save().then((tr)=>{
-                transfer = tr
-                for( key in record_ids ){
-                    transfer.records.unshift(key)
-                }
-            })
+
+            for(key in record_ids){
+                t.records.unshift(key)
+                t.save()
+            }
+
+            // t.save().then((tr)=>{
+            //     transfer = tr
+            //     for( key in record_ids ){
+            //         transfer.records.unshift(key)
+            //         transfer.save()
+            //     }
+            // })
 
             // User.findById(owner_id).then((u)=>{
             //     user = u
