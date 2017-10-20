@@ -172,7 +172,8 @@ module.exports = (app)=>{
          }else{
              //get record ids from user
              for( index in req.body ){
-                 //update transfer sheet 
+                 //add document id to transfer sheet
+                 
                  console.log(index)
              }
             

@@ -14,7 +14,7 @@
         {{!-- User Documents --}}
         <section class="user-docs">
                 <a href="/upload" >Upload Document</a>
-                <ul>
+                <ul class="docs-block">
                     {{#each user.records}}
                         <li class="record-item" data-id="{{this._id}}"><div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}</li>
                     {{/each}}
