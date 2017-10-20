@@ -192,11 +192,11 @@ module.exports = (app)=>{
             for(key in record_ids){
                 t.records.unshift(key)
                 t.save()
-                Record.findById(key).then((r)=>{
-                    console.log("consolr record", r)
-                    r.transfer_sheets.unshift(t._id)
-                    r.save()
-                })
+                // Record.findById(key).then((r)=>{
+                //     console.log("consolr record", r)
+                //     r.transfer_sheets.unshift(t._id)
+                //     r.save()
+                // })
             }
             console.log("transfer sec token", t.sec_token)
             res.send( web_address + '/access/' + t.sec_token)
@@ -235,7 +235,6 @@ module.exports = (app)=>{
             //         t.records.push(key)
             //     }
             // })
-
          }
 
      })
@@ -255,7 +254,7 @@ module.exports = (app)=>{
 
             console.log("transfer sheet", transfer)
             console.log("transfer id", transfer._id)
-            res.render('download', { transfer: transfer })
+            res.render('download', { record: transfer.records })
         }).catch((err)=>{
             console.log("error getting transfer sheet:", err.message)
         })
