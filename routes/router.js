@@ -4,6 +4,7 @@ module.exports = (app)=>{
     const Transfer = require('../models/transfer')
     const jwt = require('jsonwebtoken')
     const fs = require('fs')
+    const web_address = "http://127.0.0.1:8180"
 
 /****************************************************
  *  Main landing page
@@ -186,12 +187,14 @@ module.exports = (app)=>{
             token = token.split('.')
             sec_token = token[2]
 
-            t = new Transfer({owner_id}, sec_token, valid_time)
+            t = new Transfer({owner_id, sec_token, valid_time})
 
             for(key in record_ids){
                 t.records.unshift(key)
                 t.save()
             }
+            console.log(t.sec_token)
+            res.send( web_address + '/access/' + t.sec_token)
 
             // t.save().then((tr)=>{
             //     transfer = tr
@@ -254,7 +257,23 @@ module.exports = (app)=>{
      *      Access user's documents
      ********************************************/
     app.get('/access/:token', (req,res)=>{
-        res.redirect('/')
+        token = req.params.token
+        console.log("token", token)
+        Transfer.find({ sec_token: token}, (err, transfer)=>{
+            if(err){
+                console.log(err.message)
+            }
+            console.log("transfer sheet", transfer)
+            console.log("transfer id", transfer._id)
+            res.render('download', {transfer})
+        })
+
+    })
+
+    app.get('/dl-res/:id', (req, res)=>{
+        Record.findById(req.params.id).then((record)=>{
+            res.download(`${__dirname}/../uservault/${record.local_address}`)
+        })
     })
 
     app.get('/teest', (req, res)=>{

@@ -28,12 +28,12 @@ let getDocLink = ()=>{
         url: '/tokenate',
         data: transferItems,
         success: (address)=>{
-            
             $('.url-share').css("visibility", "visible")
+            $('input.single-use-link').val(address)
         },
         error: function (xhr, ajaxOptions, thrownError) { //Add these parameters to display the required response
             //alert(xhr.status);
-            alert("Error: ", ajaxOptions);
+            alert("Ajax error: ", ajaxOptions);
         },
     })
 }
