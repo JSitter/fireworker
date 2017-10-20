@@ -163,11 +163,19 @@ module.exports = (app)=>{
      ********************************************/
 
      app.post('/tokenate', (req, res)=>{
+
+        console.log("tokenate fn user:", req.user)
          if(!req.user){
+             //User Cookie Invalid
              console.log("Invalid user credentials.")
              res.send("Unable to authenticate user.")
          }else{
-            console.log("ajax user:", req.user)
+             //get record ids from user
+             for( index in req.body ){
+                 //update transfer sheet 
+                 console.log(index)
+             }
+            
             console.log("body", req.body)
             res.send('test')
          }
@@ -180,6 +188,10 @@ module.exports = (app)=>{
      ********************************************/
     app.get('/access/:token', (req,res)=>{
         res.redirect('/')
+    })
+
+    app.get('/teest', (req, res)=>{
+        res.download(`${__dirname}/../uservault/1508184486990.jpg`);
     })
 }
 
