@@ -172,33 +172,37 @@ module.exports = (app)=>{
              res.send("Unable to authenticate user.")
          }else{
              //Create Security Token
-             //Create new Transfer record
-            transfer = new Transfer();
+
 
             //save data for transfer record
             const owner_id = req.user
             const valid_time = +Date
-            const records = [];
-            //console.log("num of keys", )
-            
+            const record_ids = req.body
+
+            //Create Security Token
+            let token = jwt.sign({ owner_id, valid_time, record_ids }, process.env.SECRETKEY, { expiresIn: "60 days" })
+            token = token.split('.')
+            console.log("split jwt:",token[2])
+
+
+            //Create new Transfer record
+            transfer = new Transfer();
+
             //get number of records to insert
             total_records = Object.keys(req.body).length
-            //record iterator
-            complete_records = 0
-
+            
             //get record ids from user
              for( index in req.body ){
                  //add document id to transfer record
-               Record.findById(index).then((record)=>{
 
-               })
                  
              }
             // console.log("records array:", records[0]._id)
-             //Create Security Token
-            let token = jwt.sign({ owner_id, valid_time, records }, process.env.SECRETKEY, { expiresIn: "60 days" })
-            console.log("split jwt:",token.split('.'))
+
             //console.log("body", req.body)
+
+
+
             res.send('test')
          }
 
