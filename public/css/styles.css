@@ -13,15 +13,19 @@ form{
 
 button{
 
-    background: rgb(3, 165, 138);
+    background: rgb(12, 196, 209);
     padding: 8px 15px 8px 15px;
     border: none;
     color: #fff;
     margin: 5px;
     border-radius: 20px;
+    -webkit-transition: all 0.30s ease-in-out;
+    -moz-transition: all 0.30s ease-in-out;
+    -ms-transition: all 0.30s ease-in-out;
+    -o-transition: all 0.30s ease-in-out;
 }
 button:hover{
-    background-color: rgb(112, 238, 215);
+    background-color: rgb(4, 242, 255);
     color: #444;
 }
 

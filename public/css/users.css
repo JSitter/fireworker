@@ -75,19 +75,23 @@ a:active>abbr>i{
 }
 
 .url-share{
+
     position: absolute;
     visibility: hidden;
     position: relative;
-    background-color: #187b94;
+    background-color: rgba(3, 162, 184, .95);
     color: white;
     width: 600px;
     height: 300px;
-
     margin-left: auto;
     margin-right: auto;
     margin-top: -300px;
-    padding: 40px 20px 10px 20px;
+    padding: 40px 30px 10px 30px;
     border-radius: 30px;
+    border-style: solid;
+    border-width: 10px;
+    border-color: rgba(255, 255, 255, .4);
+    
 }
 
 .close-icn{
