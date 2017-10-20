@@ -13,6 +13,7 @@
         </p>
         {{!-- User Documents --}}
         <section class="user-docs">
+                {{>single-use-link this}}
                 <a href="/upload" >Upload Document</a>
                 <div class="ul-wrapper">
                     <ul class="docs-block fl-lt">
@@ -29,18 +30,9 @@
                     <div class="clear"></div>
                 </div>
                 <button class="get-transfer-link clear" onclick="getDocLink()">Get single use link</button>
-           
-                
 
         </section>
-        <section class="url-share">
-            <abbr title="Close"> <i class="fa fa-times-circle fa-2x text-white close-icn pabs" aria-hidden="true" onclick="closeLink()"></i></abbr>
-            <div class="user-link">
-                <h3>One time use link:</h3>
-                <p>Send this link to the party that should recieve these documents.</p>
-                <input class="single-use-link" value="http//www.reddit.com/r/politics" >
-            </div>
-        </section>
+
     </section>
     {{!-- Footer Area --}}
     <footer>
