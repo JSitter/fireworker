@@ -1,6 +1,7 @@
 module.exports = (app)=>{
     const User = require('../models/user.js')
     const Record = require('../models/record.js')
+    const Transfer = require('../models/transfer')
     const jwt = require('jsonwebtoken')
     const fs = require('fs')
 
@@ -164,20 +165,40 @@ module.exports = (app)=>{
 
      app.post('/tokenate', (req, res)=>{
 
-        console.log("tokenate fn user:", req.user)
+        console.log("path tokenate - current user id:", req.user)
          if(!req.user){
              //User Cookie Invalid
              console.log("Invalid user credentials.")
              res.send("Unable to authenticate user.")
          }else{
-             //get record ids from user
-             for( index in req.body ){
-                 //add document id to transfer sheet
-                 
-                 console.log(index)
-             }
+             //Create Security Token
+             //Create new Transfer record
+            transfer = new Transfer();
+
+            //save data for transfer record
+            const owner_id = req.user
+            const valid_time = +Date
+            const records = [];
+            //console.log("num of keys", )
             
-            console.log("body", req.body)
+            //get number of records to insert
+            total_records = Object.keys(req.body).length
+            //record iterator
+            complete_records = 0
+
+            //get record ids from user
+             for( index in req.body ){
+                 //add document id to transfer record
+               Record.findById(index).then((record)=>{
+
+               })
+                 
+             }
+            // console.log("records array:", records[0]._id)
+             //Create Security Token
+            let token = jwt.sign({ owner_id, valid_time, records }, process.env.SECRETKEY, { expiresIn: "60 days" })
+            console.log("split jwt:",token.split('.'))
+            //console.log("body", req.body)
             res.send('test')
          }
 
