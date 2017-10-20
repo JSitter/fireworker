@@ -182,11 +182,16 @@ module.exports = (app)=>{
             //Create Security Token
             let token = jwt.sign({ owner_id, valid_time, record_ids }, process.env.SECRETKEY, { expiresIn: "60 days" })
             token = token.split('.')
-            console.log("split jwt:",token[2])
-
-
+            sec_token = token[2]
             //Create new Transfer record
-            transfer = new Transfer();
+            transfer = new Transfer({owner_id, valid_time, sec_token});
+            transfer.save().then((t)=>{
+                for( key in record_ids ){
+                    //push all record ids to transfer sheet
+                    t.records.unshift(key)
+                }
+            })
+
 
             //get number of records to insert
             total_records = Object.keys(req.body).length
