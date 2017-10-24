@@ -203,15 +203,17 @@ module.exports = (app)=>{
      ********************************************/
     app.get('/access/:token', (req,res)=>{
         token = req.params.token
-        console.log("token", token)
-        Transfer.find({ sec_token: token}).populate('records').then((transfer)=>{
+        console.log("token", token);
+        Transfer.find({ sec_token: token})
+        .populate({path:'records'}).then((transfer)=>{
 
             // transfer.populate('records').then((t)=>{
             //     console.log("populated t", t)
             // })
 
             console.log("transfer sheet", transfer)
-            console.log("transfer id", transfer._id)
+            console.log("transfer id", transfer[0]._id)
+            console.log(transfer[0].records);
             res.render('download', { record: transfer.records })
         }).catch((err)=>{
             console.log("error getting transfer sheet:", err.message)
