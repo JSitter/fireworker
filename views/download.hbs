@@ -6,16 +6,16 @@
         <h1 class="download-warning">
             One Time Download
         </h1>
-        <p class="download-warning">
+        <p class="download-warning download-description">
             Don't Leave this page until you've finished downloading
         </p>
-        <p>
+        <p class="download-warning">
             The following files contain senstive information and are available only once to download.
         </p>
-        <ul>
+        <ul class="download-items">
         {{#each record}}
             <li>
-                {{this.local_address}}
+                <a {{this.local_address}}
             </li>
         {{/each}}
         </ul>

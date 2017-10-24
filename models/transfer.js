@@ -9,7 +9,8 @@ var Transfer = new Schema({
     transfer_to     : { type: Schema.Types.ObjectId, ref: 'Contact'},
     sec_token       : { type: String },
     valid_time      : { type: String },
-    records         : [ { type: Schema.Types.ObjectId, ref: 'Record'}]
+    records         : [ { type: Schema.Types.ObjectId, ref: 'Record'}],
+    redeemed        : { type: Boolean}
 });
 
 module.exports = mongoose.model('Transfer', Transfer);

@@ -166,16 +166,15 @@ module.exports = (app)=>{
 
      app.post('/tokenate', (req, res)=>{
 
-        console.log("path tokenate - current user id:", req.user)
          if(!req.user){
              //User Cookie Invalid
-             console.log("Invalid user credentials.")
-             res.send("Unable to authenticate user.")
+             res.send("Unable to authenticate.")
          }else{
             //save data for transfer record
             const owner_id = req.user
             const valid_time = +Date
             const record_ids = req.body
+            const redeemed = false
             let transfer
             let user
 
@@ -184,7 +183,7 @@ module.exports = (app)=>{
             token = token.split('.')
             sec_token = token[2]
 
-            t = new Transfer({owner_id, sec_token, valid_time})
+            t = new Transfer({owner_id, sec_token, valid_time, redeemed})
 
             for(key in record_ids){
                 t.records.unshift(key)
@@ -205,18 +204,18 @@ module.exports = (app)=>{
         token = req.params.token
         console.log("token", token);
         Transfer.find({ sec_token: token})
-        .populate({path:'records'}).then((transfer)=>{
+        .populate({path:'records'}).then((transfers)=>{
 
             // transfer.populate('records').then((t)=>{
             //     console.log("populated t", t)
             // })
 
-            console.log("transfer sheet", transfer)
-            console.log("transfer id", transfer[0]._id)
-            console.log(transfer[0].records);
-            res.render('download', { record: transfer.records })
+            console.log("transfer sheet", transfers)
+            console.log("transfer id", transfers[0]._id)
+            console.log(transfers[0].records);
+            res.render('download', { record: transfers[0].records })
         }).catch((err)=>{
-            console.log("error getting transfer sheet:", err.message)
+            console.log("error getting transfer document:", err.message)
         })
 
     })
