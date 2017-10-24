@@ -12,7 +12,7 @@
     "url": "git+https://github.com/JSitter/fireworker.git"
   },
   "author": "Justin Sitter",
-  "license": "MIT",
+  "license": "UNLICENSED" ,
   "bugs": {
     "url": "https://github.com/JSitter/fireworker/issues"
   },
