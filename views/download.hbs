@@ -1,16 +1,21 @@
-<section class="doc-download-wrapper">
-<h1>
-    One Time Download
-</h1>
-    <h2>Dont Leave this page until you've finished downloading</h2>
-    <p>
-        The following files contain senstive information and are available only once to download.
-    </p>
-    <ul>
-    {{#each record}}
-        <li>
-            {{this.local_address}}
-        </li>
-    {{/each}}
-    </ul>
-</section>
+<div class="page-wrapper">
+    <header class="clear">
+        hello
+    </header>
+    <section class="user-area">
+        <h1>
+            One Time Download
+        </h1>
+        <h2>Dont Leave this page until you've finished downloading</h2>
+        <p>
+            The following files contain senstive information and are available only once to download.
+        </p>
+        <ul>
+        {{#each record}}
+            <li>
+                {{this.local_address}}
+            </li>
+        {{/each}}
+        </ul>
+    </section>
+</div>
