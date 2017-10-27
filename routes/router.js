@@ -217,22 +217,26 @@ module.exports = (app)=>{
             //set security token for document download
             var downloadToken = jwt.sign({ transfer_token : transfers[0].sec_token }, process.env.SECRETKEY)
             
-            console.log("transfer sheet", transfers)
-            console.log("transfer id", transfers[0]._id)
-            console.log(transfers[0].records);
+            // console.log("transfer sheet", transfers)
+            // console.log("transfer id", transfers[0]._id)
+            // console.log(transfers[0].records);
             res.render('download', { record: transfers[0].records })
         }).catch((err)=>{
             console.log("error getting transfer document:", err.message)
         })
 
     })
-
+    
+    /*********************************************
+     *  /dl-res/:id
+     *      download resource
+     ********************************************/
     app.get('/dl-res/:id', (req, res)=>{
         Record.findById(req.params.id).then((record)=>{
             res.download(`${__dirname}/../uservault/${record.local_address}`)
         })
     })
-
+    //Test Route to demonstrate downloading of images
     app.get('/teest', (req, res)=>{
         res.download(`${__dirname}/../uservault/1508184486990.jpg`);
     })
