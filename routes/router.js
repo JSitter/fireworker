@@ -203,13 +203,20 @@ module.exports = (app)=>{
     app.get('/access/:token', (req,res)=>{
         token = req.params.token
         console.log("token", token);
+
         Transfer.find({ sec_token: token})
         .populate({path:'records'}).then((transfers)=>{
-
-            // transfer.populate('records').then((t)=>{
-            //     console.log("populated t", t)
-            // })
-
+            if(transfers.length == 0 || transfers[0].redeemed){
+                //shady deals - redirect to home page
+                return res.redirect('/')
+            }
+            //set transfer document as redeemed
+            transfers[0].redeemed = true
+            transfers[0].save()
+            //set security token for document download
+            var downloadToken = jwt.sign({ transfer_token : transfers[0].sec_token })
+            
+            
             console.log("transfer sheet", transfers)
             console.log("transfer id", transfers[0]._id)
             console.log(transfers[0].records);
