@@ -208,14 +208,14 @@ module.exports = (app)=>{
         .populate({path:'records'}).then((transfers)=>{
             if(transfers.length == 0 || transfers[0].redeemed){
                 //shady deals - redirect to home page
-                return res.redirect('/')
+                return res.redirect('/expired-link')
             }
             //set transfer document as redeemed
             transfers[0].redeemed = true
             transfers[0].save()
+            console.log(transfers[0].sec_token)
             //set security token for document download
-            var downloadToken = jwt.sign({ transfer_token : transfers[0].sec_token })
-            
+            var downloadToken = jwt.sign({ transfer_token : transfers[0].sec_token }, process.env.SECRETKEY)
             
             console.log("transfer sheet", transfers)
             console.log("transfer id", transfers[0]._id)
@@ -235,6 +235,10 @@ module.exports = (app)=>{
 
     app.get('/teest', (req, res)=>{
         res.download(`${__dirname}/../uservault/1508184486990.jpg`);
+    })
+
+    app.get('/expired-link', (req, res)=>{
+        res.render('expired')
     })
 }
 
