@@ -76,6 +76,7 @@ let downloadAuth = (req, res, next)=>{
     try{
       transferToken = jwt.verify(token, process.env.SECRETKEY)
       req.user = transfer_token._id
+      console.log("Download auth success")
     }catch(err){
       console.log("Transfer token athentication Failed:", err)
     }
