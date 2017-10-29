@@ -86,6 +86,9 @@ let downloadAuth = (req, res, next)=>{
 //Add checkAuth function to middleware
 app.use(checkAuth);
 
+//add check for download authorization to middleware
+app.use(downloadAuth)
+
 // Set up a static public directory
 app.use(express.static('public'));
 
