@@ -63,6 +63,26 @@ let checkAuth = (req, res, next)=>{
   next();
 };
 
+/****************************************************
+ *  Check for download access on every request
+ ***************************************************/
+let downloadAuth = (req, res, next)=>{
+  if(typeof req.cookies.transfer_token === 'undefined' || req.cookies.transfer_token === null){
+    req.download_token = null
+  }else{
+    //if correct cookie is set
+    let token = req.cookies.transfer_token
+    //verification
+    try{
+      transferToken = jwt.verify(token, process.env.SECRETKEY)
+      req.user = transfer_token._id
+    }catch(err){
+      console.log("Transfer token athentication Failed:", err)
+    }
+  }
+  next()
+}
+
 //Add checkAuth function to middleware
 app.use(checkAuth);
 
