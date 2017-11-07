@@ -15,7 +15,7 @@
         <ul class="download-items">
         {{#each record}}
             <li>
-                <a {{this.local_address}}
+                <a href="/dl-res/{{this._id}}">{{this.user_filename}}</a>
             </li>
         {{/each}}
         </ul>
