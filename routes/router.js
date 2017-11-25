@@ -202,7 +202,6 @@ module.exports = (app)=>{
      ********************************************/
     app.get('/access/:token', (req,res)=>{
         token = req.params.token
-        console.log("token", token);
 
         Transfer.find({ sec_token: token})
         .populate({path:'records'}).then((transfers)=>{
@@ -216,7 +215,7 @@ module.exports = (app)=>{
             console.log(transfers[0].sec_token)
             //set security token for document download
             var downloadToken = jwt.sign({ transfer_token : transfers[0].sec_token }, process.env.SECRETKEY)
-            
+            res.cookie('downloadAuth', downloadToken, { maxAge: 900000, httpOnly: true });
             // console.log("transfer sheet", transfers)
             // console.log("transfer id", transfers[0]._id)
             // console.log(transfers[0].records);
@@ -232,13 +231,32 @@ module.exports = (app)=>{
      *      download resource
      ********************************************/
     app.get('/dl-res/:id', (req, res)=>{
-        Record.findById(req.params.id).then((record)=>{
-            res.download(`${__dirname}/../uservault/${record.local_address}`)
-        })
-    })
-    //Test Route to demonstrate downloading of images
-    app.get('/teest', (req, res)=>{
-        res.download(`${__dirname}/../uservault/1508184486990.jpg`);
+
+        if(typeof req.cookies.downloadAuth === 'undefined'){
+            res.render('expired')
+        }else{
+           
+            const client_token = jwt.verify(req.cookies.downloadAuth, process.env.SECRETKEY)
+
+            Transfer.find({sec_token:client_token.transfer_token}).populate('records').then((item)=>{
+                let found = false
+                item[0].records.forEach((record)=>{
+                    //Only download item if it's in transfer sheet
+                    if(record._id == req.params.id){
+                        console.log('MATCH')
+                        res.download(`${__dirname}/../uservault/${record.local_address}`)
+                        found = true
+                    }
+                })
+                if(!found){
+                    res.render('expired')
+                }
+
+            }).catch((err)=>{
+                console.log(err.message)
+            })
+        }
+
     })
 
     app.get('/expired-link', (req, res)=>{

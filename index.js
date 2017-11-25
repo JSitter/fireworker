@@ -66,29 +66,39 @@ let checkAuth = (req, res, next)=>{
 /****************************************************
  *  Check for download access on every request
  ***************************************************/
-let downloadAuth = (req, res, next)=>{
+let tokenAuth = (req, res, next)=>{
   if(typeof req.cookies.transfer_token === 'undefined' || req.cookies.transfer_token === null){
-    req.download_token = null
+    req.download_token = null;
   }else{
     //if correct cookie is set
-    let token = req.cookies.transfer_token
+    let token = req.cookies.transfer_token;
     //verification
     try{
-      transferToken = jwt.verify(token, process.env.SECRETKEY)
-      req.user = transfer_token._id
-      console.log("Download auth success")
+      transferToken = jwt.verify(token, process.env.SECRETKEY);
+      req.user = transfer_token._id;
+      req.download_token = transfer_token.id;
+      console.log("Download auth success");
     }catch(err){
-      console.log("Transfer token athentication Failed:", err)
+      console.log("Transfer token authentication Failed:", err);
     }
   }
-  next()
+  next();
 }
 
 //Add checkAuth function to middleware
 app.use(checkAuth);
 
 //add check for download authorization to middleware
-app.use(downloadAuth)
+app.use(tokenAuth);
+
+/****************************************************
+ *  Check for download access
+ ***************************************************/
+let downloadAuth = (req, res, next)=>{
+  if(typeof req.cookies.download_token === "undefined" || req.cookies.download_token === null){
+    
+  }
+}
 
 // Set up a static public directory
 app.use(express.static('public'));
@@ -98,7 +108,7 @@ app.engine('hbs', hbs({defaultLayout: 'main', extname: 'hbs'}));
 app.set('view engine', 'hbs');
 
 // Load Routes
-require('./routes/router.js')(app)
+require('./routes/router.js')(app);
 
 // Listen on port 8180
 app.listen(8180, function () {
