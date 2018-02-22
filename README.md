@@ -37,7 +37,7 @@ npm start
 * Check on page load if token user id exists in database
 * Check that user can't submit record with no files selected
 * :octocat:
-* Remove node_modules folder from repository
+
 
 If fireworker doesn't initially work, try removing node_modules folder and reinstall by entering
 

@@ -4,10 +4,6 @@
  *  v. 1.0.0 Beta
  ******************************************/
 
- //Setup secret key environment variable
- //This should be handled with better security
-process.env.SECRETKEY = "secretSAlt"
-
 const express = require('express');
 const hbs = require('express-handlebars');
 const mongoose = require('mongoose');
@@ -15,6 +11,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken');
 const fileUpload = require('express-fileupload');
+require('dotenv').config();
 
 //Instantiate express
 const app = express();

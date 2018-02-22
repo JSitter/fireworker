@@ -29,7 +29,7 @@ module.exports = (app)=>{
         const user = new User(req.body);
 
         user.save().then((user)=>{
-            console.log(user)
+            //console.log(user);
             // Encode JWT and set cookie
             var token = jwt.sign({ _id: user._id }, process.env.SECRETKEY, { expiresIn: "60 days" });
             res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
@@ -41,17 +41,18 @@ module.exports = (app)=>{
  *  User Login
  ***************************************************/
     app.post('/login', (req, res)=>{
-        User.findOne({ email: req.body.email }, "+password", function (err, user) {
+        User.findAll({ email: req.body.email }, "+password", function (err, user) {
+            console.log(user)
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
 
             user.comparePassword(req.body.password, function (err, isMatch) {
               if (!isMatch) {
                 return res.status(401).send({ message: 'Wrong Username or password' });
               }
-        
+
               var token = jwt.sign({ _id: user._id }, process.env.SECRETKEY, { expiresIn: "60 days" });
               res.cookie('nToken', token, { maxAge: 900000, httpOnly: true });
-              
+
               res.redirect('/u');
             });
           });
@@ -71,7 +72,7 @@ module.exports = (app)=>{
             }).catch((err)=>{
                 console.log("user page error: ",err.message)
             })
-            
+
         }
         console.log("user: ",req.user)
     })
@@ -107,7 +108,7 @@ module.exports = (app)=>{
  *  Post Handle User Record Submission
  **************************************/
     app.post('/vaultgate', (req, res)=>{
-        
+
         if(!req.user){
             res.status(401).send('User not logged in.');
         }else{
@@ -119,7 +120,7 @@ module.exports = (app)=>{
             // The name of the input field is used to retrieve the uploaded file
 
             //save user
-            let user; 
+            let user;
             const owner_id = req.user
             const userFile = req.files.userDocument;
             const local_address = +new Date + ".jpg"
@@ -134,16 +135,16 @@ module.exports = (app)=>{
             userFile.mv(local_dir + local_address, function(err) {
                 if (err)
                 return res.status(500).send(err);
-                
+
                     User.findById(owner_id).then((u)=>{
                         user = u;
-                        
+
                         const user_filename = userFile.name
 
                         // console.log("filename: ", user_filename)
                         // console.log("userid", owner_id)
                         // console.log("local filename:", local_address)
-        
+
                         let userRecord = new Record({local_address, owner_id, user_filename})
                         return userRecord.save()
                     }).then((record)=>{
@@ -153,13 +154,13 @@ module.exports = (app)=>{
                         res.redirect('/u')
                     }).catch((err)=>{
                         console.log(err.message)
-                    })   
+                    })
                 });
         }
     });
 
     /*********************************************
-     *  /tokenate 
+     *  /tokenate
      *      Gets (via POST) ids of docs to make available
      *      and returns link to retrieve them
      ********************************************/
@@ -225,7 +226,7 @@ module.exports = (app)=>{
         })
 
     })
-    
+
     /*********************************************
      *  /dl-res/:id
      *      download resource
@@ -235,7 +236,7 @@ module.exports = (app)=>{
         if(typeof req.cookies.downloadAuth === 'undefined'){
             res.render('expired')
         }else{
-           
+
             const client_token = jwt.verify(req.cookies.downloadAuth, process.env.SECRETKEY)
 
             Transfer.find({sec_token:client_token.transfer_token}).populate('records').then((item)=>{
@@ -243,7 +244,6 @@ module.exports = (app)=>{
                 item[0].records.forEach((record)=>{
                     //Only download item if it's in transfer sheet
                     if(record._id == req.params.id){
-                        console.log('MATCH')
                         res.download(`${__dirname}/../uservault/${record.local_address}`)
                         found = true
                     }
@@ -263,4 +263,3 @@ module.exports = (app)=>{
         res.render('expired')
     })
 }
-
