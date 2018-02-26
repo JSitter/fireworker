@@ -19,7 +19,7 @@ port = process.env.PORT || 5000
 
 const uristring = 
   process.env.MONGODB_URI || 
-  '/localhost/fireworker';
+  'localhost/fireworker';
 
 //Instantiate express
 const app = express();
@@ -30,15 +30,10 @@ app.use(fileUpload());
 //Require models
 const User = require('./models/user.js')
 
+console.log(uristring)
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
-mongoose.connect('/localhost/fireworker', function (err, res) {
-  if (err) { 
-    console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-    console.log ('Succeeded connected to: ' + uristring);
-  }
-});
+mongoose.connect(uristring);
 
 //use javascript global promise instea of deprecated mongoose
 mongoose.Promise = global.Promise;
