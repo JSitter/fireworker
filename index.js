@@ -15,7 +15,7 @@ require('dotenv').config();
 
 const uristring = 
   process.env.MONGODB_URI || 
-  'mongodb://localhost/fireworker';
+  '/localhost/fireworker';
 
 //Instantiate express
 const app = express();
