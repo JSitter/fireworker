@@ -119,6 +119,6 @@ app.set('view engine', 'hbs');
 require('./routes/router.js')(app);
 
 // Listen on port 8180
-app.listen(80, function () {
+app.listen(5000, function () {
     console.log('Fireworker listening on port 8180!');
    });
