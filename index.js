@@ -47,7 +47,7 @@ let checkAuth = (req, res, next)=>{
     req.user = null;
   } else {
     var token = req.cookies.nToken;
-    
+
     //Synchronous verification
     try{
       decodedToken = jwt.verify(token, process.env.SECRETKEY)
@@ -55,7 +55,7 @@ let checkAuth = (req, res, next)=>{
       req.user = decodedToken._id
     }catch(err){
       console.log(err.message)
-    }   
+    }
   };
   next();
 };
@@ -93,7 +93,7 @@ app.use(tokenAuth);
  ***************************************************/
 let downloadAuth = (req, res, next)=>{
   if(typeof req.cookies.download_token === "undefined" || req.cookies.download_token === null){
-    
+
   }
 }
 
