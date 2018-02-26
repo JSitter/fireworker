@@ -13,6 +13,8 @@ const jwt = require('jsonwebtoken');
 const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
+port = process.env.PORT || 5000
+
 const uristring = 
   process.env.MONGODB_URI || 
   '/localhost/fireworker';
@@ -118,7 +120,7 @@ app.set('view engine', 'hbs');
 // Load Routes
 require('./routes/router.js')(app);
 
-// Listen on port 8180
-app.listen(5000, function () {
-    console.log('Fireworker listening on port 8180!');
+// Listen on port
+app.listen(port, function () {
+    console.log('Fireworker listening on port ' + port);
    });
