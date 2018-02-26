@@ -17,7 +17,6 @@ const uristring =
   process.env.MONGODB_URI || 
   '/localhost/fireworker';
 
-
 //Instantiate express
 const app = express();
 
@@ -120,6 +119,6 @@ app.set('view engine', 'hbs');
 require('./routes/router.js')(app);
 
 // Listen on port 8180
-app.listen(80, function () {
+app.listen(8180, function () {
     console.log('Fireworker listening on port 8180!');
    });
