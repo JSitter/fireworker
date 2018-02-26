@@ -14,6 +14,8 @@ const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 port = process.env.PORT || 5000
+// site_address = process.env.SITE || "localhost:"+ port
+// console.log(site_address)
 
 const uristring = 
   process.env.MONGODB_URI || 
@@ -30,7 +32,7 @@ const User = require('./models/user.js')
 
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
-mongoose.connect(uristring, function (err, res) {
+mongoose.connect('/localhost/fireworker', function (err, res) {
   if (err) { 
     console.log ('ERROR connecting to: ' + uristring + '. ' + err);
   } else {
