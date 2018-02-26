@@ -14,8 +14,8 @@ const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 port = process.env.PORT || 5000
-// site_address = process.env.SITE || "localhost:"+ port
-// console.log(site_address)
+
+
 
 const uristring = 
   process.env.MONGODB_URI || 

@@ -4,7 +4,8 @@ module.exports = (app)=>{
     const Transfer = require('../models/transfer')
     const jwt = require('jsonwebtoken')
     const fs = require('fs')
-    const web_address = "http://127.0.0.1:8180"
+    const site_address = process.env.SITE || "localhost:"+ port
+    const web_address = "http://" + site_address
 
 /****************************************************
  *  Main landing page
