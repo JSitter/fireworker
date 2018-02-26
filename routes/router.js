@@ -243,9 +243,10 @@ module.exports = (app)=>{
             Transfer.find({sec_token:client_token.transfer_token}).populate('records').then((item)=>{
                 let found = false
                 item[0].records.forEach((record)=>{
+                    filename = record.user_filename
                     //Only download item if it's in transfer sheet
                     if(record._id == req.params.id){
-                        res.download(`${__dirname}/../uservault/${record.local_address}`)
+                        res.download(`${__dirname}/../uservault/${record.local_address}`, filename)
                         found = true
                     }
                 })
