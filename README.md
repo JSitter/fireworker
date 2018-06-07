@@ -36,7 +36,7 @@ npm start
 * Check if username/email already exists in database
 * Check on page load if token user id exists in database
 * Check that user can't submit record with no files selected
-* 
+* Fix 500 Server Error on production login
 
 
 If fireworker doesn't initially work, try removing node_modules folder and reinstall by entering
