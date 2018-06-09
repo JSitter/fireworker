@@ -27,8 +27,10 @@ module.exports = (app)=>{
  *  Retrieve Post signup data
  ***************************************************/
     app.post('/signup', (req, res)=>{
+        User.find({email: req.body.email}, (err, acct)=>{
+            console.log("User found: " + str(len(acct)))
+        })
         const user = new User(req.body);
-
         user.save().then((user)=>{
             //console.log(user);
             // Encode JWT and set cookie
@@ -42,7 +44,10 @@ module.exports = (app)=>{
  *  User Login
  ***************************************************/
     app.post('/login', (req, res)=>{
-        User.findAll({ email: req.body.email }, "+password", function (err, user) {
+
+        console.log("finding user")
+
+        User.find({ email: req.body.email }, "+password", function (err, user) {
             console.log(user)
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
 
