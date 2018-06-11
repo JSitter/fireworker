@@ -25,8 +25,17 @@ module.exports = (app)=>{
  *  Retrieve Post signup data
  ***************************************************/
     app.post('/signup', (req, res)=>{
+        
+        //Check if user email already exists
         User.find({email: req.body.email}, (err, acct)=>{
-            console.log("User found: " + str(len(acct)))
+            console.log("User found: " + String(acct.length))
+            if( acct.length > 0 ){
+                //Redirect to login if user email already exists
+                //In the future this should redirect to a reset password page
+                res.redirect('/login')
+            }else{
+                console.log("New Acct Made")
+            }
         })
         const user = new User(req.body);
         user.save().then((user)=>{
