@@ -31,9 +31,17 @@ npm start
 ![login page](./help_files/fireworkerlogin.png)
 ![link token](./help_files/fireworkerlink.png)
 
+## Planned Features
+* Text link to phone number
+* Email verification option for sender
 
-## Bug Fixes 
-* Check if username/email already exists in database
+
+## Version 1.0.1 Beta Updates and Bug Fixes
+* Updated dependency version requirements.
+* Attempting to re-create existing user re-directs to sign in page.
+* Added testing architecture
+
+## Bugs to fix 
 * Check on page load if token user id exists in database
 * Check that user can't submit record with no files selected
 * Fix 500 Server Error on production login
