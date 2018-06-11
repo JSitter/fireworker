@@ -1,7 +1,6 @@
 /*******************************************
  *  FIREWORKER
  *      THE DATA INCINERATOR
- *  v. 1.0.0 Beta
  ******************************************/
 
 const express = require('express');
@@ -14,8 +13,6 @@ const fileUpload = require('express-fileupload');
 require('dotenv').config();
 
 port = process.env.PORT || 5000
-
-
 
 const uristring = 
   process.env.MONGODB_URI || 

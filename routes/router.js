@@ -10,7 +10,6 @@ module.exports = (app)=>{
 /****************************************************
  *  Main landing page
  ***************************************************/
-    //Main landing page
     app.get('/', (req, res)=>{
         res.render("home")
     })
@@ -18,7 +17,6 @@ module.exports = (app)=>{
 /****************************************************
  *  User Signup
  ***************************************************/
-    //User Signup
     app.get('/sign-up', (req, res)=>{
         res.render("sign-up")
     })
@@ -111,7 +109,7 @@ module.exports = (app)=>{
     })
 
 /**************************************
- *  Post Handle User Record Submission
+ *  Handle User Record Submissionn via Post
  **************************************/
     app.post('/vaultgate', (req, res)=>{
 
@@ -166,11 +164,9 @@ module.exports = (app)=>{
     });
 
     /*********************************************
-     *  /tokenate
      *      Gets (via POST) ids of docs to make available
      *      and returns link to retrieve them
      ********************************************/
-
      app.post('/tokenate', (req, res)=>{
 
          if(!req.user){
@@ -204,7 +200,6 @@ module.exports = (app)=>{
      })
 
     /*********************************************
-     *  /access/:token
      *      Access user's documents
      ********************************************/
     app.get('/access/:token', (req,res)=>{
@@ -234,7 +229,6 @@ module.exports = (app)=>{
     })
 
     /*********************************************
-     *  /dl-res/:id
      *      download resource
      ********************************************/
     app.get('/dl-res/:id', (req, res)=>{
@@ -266,6 +260,9 @@ module.exports = (app)=>{
 
     })
 
+/*********************************************
+ *     Expired Resource
+ ********************************************/
     app.get('/expired-link', (req, res)=>{
         res.render('expired')
     })
