@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 
-let request = require('supertest');
+var request = require('supertest');
 const express = require('express')
 
 request = request('http://localhost:5000')
