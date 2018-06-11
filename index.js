@@ -43,8 +43,6 @@ app.use(cookieParser());
 
 //Add bodyParser to App to get post data
 app.use(bodyParser.urlencoded({extended: true}));
-//Authenticate Users on every page load
-//This might be unnessesary
 
 /****************************************************
  *  Check for login token on every request
