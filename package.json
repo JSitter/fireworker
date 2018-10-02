@@ -6,7 +6,8 @@
   "scripts": {
     "test": "mocha --reporter spec ./tests/ --exit",
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "bla": "cal"
   },
   "repository": {
     "type": "git",

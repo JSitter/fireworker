@@ -54,10 +54,11 @@ module.exports = (app)=>{
 
         console.log("finding user")
 
-        User.find({ email: req.body.email }, "+password", function (err, user) {
+        User.findOne({ email: req.body.email }, "+password", function (err, user) {
             console.log(user)
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
-
+            console.log("returned User Object")
+            console.log(user)
             user.comparePassword(req.body.password, function (err, isMatch) {
               if (!isMatch) {
                 return res.status(401).send({ message: 'Wrong Username or password' });
