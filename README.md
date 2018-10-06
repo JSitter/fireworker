@@ -1,6 +1,7 @@
 # Fireworker
 ### Version 1.0.1 Beta
 [![Build Status](https://travis-ci.org/JSitter/fireworker.svg?branch=master)](https://travis-ci.org/JSitter/fireworker)
+[![Coverage Status](https://coveralls.io/repos/github/JSitter/fireworker/badge.svg?branch=master)](https://coveralls.io/github/JSitter/fireworker?branch=master)
 ## Introduction
 Fireworker is a web app that will allow for the secure sending and retrieval of sensitive information. It was inspired by mission impossible and the self destructing message delivery by the fictional governments of Great Britain and the United States.
 
