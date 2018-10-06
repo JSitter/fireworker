@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --reporter spec ./tests/ --exit",
+    "coverage": "`npm bin`/istanbul cover ./test/",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "bla": "cal"
@@ -34,6 +35,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "coveralls": "^3.0.2",
     "mocha": "^5.2.0",
     "supertest": "^3.1.0"
   }

@@ -8,31 +8,31 @@
         <h3>
             Hello {{user.fname}},
         </h3>
-        <p>
-            This would be a good spot for some content. Perhaps adding some documentation in the project's readme.
-        </p>
+        
         {{!-- User Documents --}}
         <section class="user-docs">
                 {{>single-use-link this}}
+  
                 <a href="/upload" >Upload Document</a>
+
                 <div class="ul-wrapper">
-                    <ul class="docs-block fl-lt">
-                        {{#each user.records}}
-                            <li class="record-item" data-id="{{this._id}}">
-                                <div class="record-name">{{this.user_filename}}</div>{{>addTransfer this}}
-                            </li>
-                        {{/each}}
-                    </ul>
-                    <ul class="docs-block fl-rt">
-                        <li>
-                            {{!-- add transfer sheet items here --}}
-                            hello
-                        </li>
-                    </ul>
+                    <table class="docs-block fl-lt">
+                        <thead><tr><th>Your Current Records</th></tr></thead>
+                        <tbody>
+                            {{#each user.records}}
+                                <tr data-id="{{this._id}}">
+                                    <td>{{this.user_filename}}{{>addTransfer this}}</td>
+                                </tr>
+                            {{/each}}
+                        </tbody>
+
+
+                    </table>
+                   
                     <div class="clear"></div>
                 </div>
                 <button class="get-transfer-link clear" onclick="getDocLink()">Get single use link</button>
-                <a onclick="clickket()">cLICK ME</a>
+                
         </section>
 
     </section>
