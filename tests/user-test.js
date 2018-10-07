@@ -12,8 +12,20 @@ describe('Login page', function() {
       .expect('Content-Type', 'text/plain; charset=utf-8', done);
     });
 
-    it('should return 401 when not logged in', function(done){
-      request.get('/')
-      .expect(301, done)
+    it('should should return 401 without login credentials', function(done){
+      request.get('/u')
+        .send()
     })
+    // it('should respond with redirect on post', function(done) {
+    //   request.post('/login')
+    //     .send({"participant":{"nuid":"98ASDF988SDF89SDF89989SDF9898"}})
+    //     .expect(200)
+    //     .expect('Content-Type', /json/)
+    //     .end(function(err, res) {
+    //       if (err) done(err);
+    //       res.body.should.have.property('participant');
+    //       res.body.participant.should.have.property('nuid', '98ASDF988SDF89SDF89989SDF9898');
+  
+    //        });
+    //       });
 });
