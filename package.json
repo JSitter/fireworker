@@ -1,6 +1,6 @@
 {
   "name": "fireworker",
-  "version": "1.0.1",
+  "version": "1.0.5",
   "description": "Send and recieve files securely",
   "main": "index.js",
   "scripts": {

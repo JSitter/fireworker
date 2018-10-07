@@ -1,5 +1,5 @@
 # Fireworker
-### Version 1.0.1 Beta
+### Version 1.0.5 Beta
 [![Build Status](https://travis-ci.org/JSitter/fireworker.svg?branch=master)](https://travis-ci.org/JSitter/fireworker)
 [![Coverage Status](https://coveralls.io/repos/github/JSitter/fireworker/badge.svg?branch=master)](https://coveralls.io/github/JSitter/fireworker?branch=master)
 
@@ -21,7 +21,7 @@ Install fireworker on your server by running the terminal command:
 npm install
 ```
 
-To run fireworker first startup the mongodb deamon by running
+To run fireworker first startup the mongodb daemon by running
 
 ``` 
 sudo mongod 
@@ -44,6 +44,9 @@ npm start
 * Text link to phone number
 * Email verification option for sender
 
+## Version 1.0.5
+* Fixed db connection bug
+* Added Materialize
 
 ## Version 1.0.1 Beta Updates and Bug Fixes
 * Updated dependency version requirements.
@@ -53,7 +56,6 @@ npm start
 ## Bugs to fix 
 * Check on page load if token user id exists in database
 * Check that user can't submit record with no files selected
-* Fix 500 Server Error on production login
 
 
 If fireworker doesn't initially work, try removing node_modules folder and reinstall by entering
