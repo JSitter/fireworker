@@ -13,7 +13,7 @@ describe('Login page', function() {
     });
 
     it('should return 401 when not logged in', function(done){
-      request.get('/u')
-      .expect(401, done)
+      request.get('/')
+      .expect(301, done)
     })
 });
