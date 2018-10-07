@@ -11,4 +11,9 @@ describe('Login page', function() {
       request.get('/login')
       .expect('Content-Type', 'text/plain; charset=utf-8', done);
     });
+
+    it('should return 404 when not logged in', function(done){
+      request.get('/u')
+      .expect(404, done)
+    })
 });
