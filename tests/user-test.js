@@ -10,12 +10,10 @@ describe('Login page', function() {
       
       request.get('/login')
       .expect('Content-Type', 'text/plain; charset=utf-8', done);
+      
     });
 
-    it('should should return 401 without login credentials', function(done){
-      request.get('/u')
-        .send()
-    })
+
     // it('should respond with redirect on post', function(done) {
     //   request.post('/login')
     //     .send({"participant":{"nuid":"98ASDF988SDF89SDF89989SDF9898"}})
