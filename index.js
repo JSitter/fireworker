@@ -64,14 +64,6 @@ let checkAuth = (req, res, next)=>{
   next();
 };
 
-/** Send SMS Via Twilio */
-const twilio = require('twilio')(process.env.TWILIO_SID)(process.env.TWILIO_AUTH);
-
-let sendSMS = function(recipientPhoneNumber, messageBody){
-  twilio.messages.create({from: '+14159172654', body:messageBody, to: recipientPhoneNumber})
-  .then(message => console.log(message.sid))
-  .done();
-}
 
 /****************************************************
  *  Check for download access on every request
