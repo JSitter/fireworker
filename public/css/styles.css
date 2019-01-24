@@ -84,11 +84,19 @@ body{
     height: 120px;
 }
 
+.login-block > p {
+    margin: 2px;
+}
+
 .signup-block{
     min-width: 300px;
     color: #fff;
     background-color: #222;
     padding: 90px;
+}
+
+.login-block {
+    max-width: 600px;
 }
 
 .userspace-block{
@@ -108,5 +116,9 @@ body{
 
 .clear{
     clear: both;
+}
+
+.intro > p {
+    font-weight: bold;
 }
 
