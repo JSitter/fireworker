@@ -287,4 +287,42 @@ module.exports = (app)=>{
     app.get('/expired-link', (req, res)=>{
         res.render('expired')
     })
+
+/*********************************************
+ *     Reset Password (GET)
+ ********************************************/
+app.get('/reset-password', (req, res)=>{
+    res.render('reset-password')
+})
+
+/*********************************************
+ *     Reset Password (POST)
+ ********************************************/
+app.post('/reset-password', (req, res)=>{
+    
+    res.redirect('/reset-confirmation')
+    console.log(req.body.email)
+})
+
+/*********************************************
+ *     Reset Password Confirmation (GET)
+ ********************************************/
+app.get('/reset-confirmation', (req, res)=>{
+    res.render('reset-confirmation')
+})
+
+/*********************************************
+ *     Authenticated Password Reset (GET)
+ ********************************************/
+app.get('/reset/:token', (req, res)=>{
+    res.render('expired')
+})
+
+/*********************************************
+ *     Authenticated Password Reset (POST)
+ ********************************************/
+app.post('/reset', (req, res)=>{
+    res.render('expired')
+})
+
 }
