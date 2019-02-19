@@ -16,7 +16,8 @@ var UserSchema = new Schema({
     password        : { type: String, select: false },
     fname           : { type: String },
     lname           : { type: String },
-    records         : [{ type: Schema.Types.ObjectId, ref: 'Record' }]
+    records         : [{ type: Schema.Types.ObjectId, ref: 'Record' }],
+    pw_reset_request : { type: String }
 });
 
 /****************************************************
