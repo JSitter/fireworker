@@ -16,7 +16,7 @@ port = process.env.PORT || 5000
 
 const uristring = 
   process.env.MONGODB_URI || 
-  'localhost/fireworker';
+  'mongodb://localhost:27017/fireworker';
 
 //Instantiate express
 const app = express();

@@ -20,7 +20,7 @@
   },
   "homepage": "https://github.com/JSitter/fireworker#readme",
   "dependencies": {
-    "bcrypt": "=2.0.1",
+    "bcrypt": "=3.0.4",
     "body-parser": "^1.18.3",
     "cookie-parser": "^1.4.3",
     "dotenv": "^5.0.1",
@@ -30,7 +30,9 @@
     "generate-password": "^1.4.1",
     "hoek": "^4.2.1",
     "jsonwebtoken": "^8.2.1",
-    "mongoose": "^4.13.12",
+    "lodash": ">=4.17.11",
+    "mongoose": "^5.4.14",
+    "mpath": ">=0.5.1",
     "nodemon": "^1.17.4"
   },
   "devDependencies": {
