@@ -1,4 +1,5 @@
 module.exports = (app)=>{
+    const pgen = require('generate-password');
     const User = require('../models/user.js')
     const Record = require('../models/record.js')
     const Transfer = require('../models/transfer')
@@ -299,9 +300,18 @@ app.get('/reset-password', (req, res)=>{
  *     Reset Password (POST)
  ********************************************/
 app.post('/reset-password', (req, res)=>{
-    
     res.redirect('/reset-confirmation')
-    console.log(req.body.email)
+    
+    var password = pgen.generate({
+        length: 10,
+        numbers: true
+    });
+     
+    User.findOne({email:req.body.email}).then( (user) =>{
+        console.log(user)
+    })
+    console.log(password);
+
 })
 
 /*********************************************
