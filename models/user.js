@@ -1,16 +1,16 @@
-/*********************************
+/**********************
  *  Fireworker
  *      User Model
- *********************************/
+ **********************/
 
 var mongoose = require('mongoose'),
 bcrypt = require('bcrypt'),
 Schema = mongoose.Schema;
 
 
-/****************************************************
+/**********************
  *  Define User Schema
- ***************************************************/
+ **********************/
 var UserSchema = new Schema({
     email           : { type: String, required: true},
     password        : { type: String, select: false },
@@ -20,9 +20,9 @@ var UserSchema = new Schema({
     pw_reset_request : { type: String }
 });
 
-/****************************************************
+/*************************
  *  SAVE USER
- ***************************************************/
+ *************************/
 UserSchema.pre('save', function(next){
         
   // DONT ENCRYPT PASSWORD IF NOT CHANGED
@@ -40,9 +40,9 @@ UserSchema.pre('save', function(next){
   });
 });
 
-/****************************************************
+/*************************
  *  Compare Password
- ***************************************************/
+ *************************/
   UserSchema.methods.comparePassword = function(password, done) {
     bcrypt.compare(password, this.password, function(err, isMatch) {
       done(err, isMatch);
