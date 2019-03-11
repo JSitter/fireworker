@@ -35,6 +35,9 @@ mongoose.Promise = global.Promise;
 //log database errors to console
 mongoose.connection.on('error', console.error.bind(console, "MongoDB Connection error"));
 
+//Create locals for Stripe API
+app.locals.PUBLIC_STRIPE_API_KEY = process.env.PUBLIC_STRIPE_API_KEY
+
 //Use CookieParser in express app
 app.use(cookieParser());
 
@@ -109,6 +112,7 @@ app.set('view engine', 'hbs');
 // Load Routes
 require('./routes/router.js')(app);
 require('./routes/pw_resets.js')(app);
+require('./routes/transactions.js')(app);
 
 // Listen on port
 app.listen(port, function () {
