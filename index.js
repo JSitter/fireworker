@@ -24,9 +24,6 @@ const app = express();
 // use default options
 app.use(fileUpload());
 
-//Require models
-const User = require('./models/user.js')
-
 console.log(uristring)
 // Makes connection asynchronously.  Mongoose will queue up database
 // operations and release them when the connection is complete.
@@ -111,6 +108,7 @@ app.set('view engine', 'hbs');
 
 // Load Routes
 require('./routes/router.js')(app);
+require('./routes/pw_resets.js')(app);
 
 // Listen on port
 app.listen(port, function () {
