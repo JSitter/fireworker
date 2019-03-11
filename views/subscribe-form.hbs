@@ -1,0 +1,15 @@
+<section class="login-block">
+    <form action="/purchase" method="post">
+      <script
+        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+        data-key={{stripe_api}}
+        data-amount="999"
+        data-name="Stripe.com"
+        data-description="One Month Subscription for Fireworker"
+        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+        data-locale="auto"
+        data-zip-code="true">
+      </script>
+    </form>
+    <br/>
+</section>
