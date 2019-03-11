@@ -18,7 +18,8 @@ var UserSchema = new Schema({
     lname           : { type: String },
     records         : [{ type: Schema.Types.ObjectId, ref: 'Record' }],
     pw_reset_request : { type: Date },
-    pw_reset_token : { type: String }
+    pw_reset_token : { type: String },
+    subscription: { type: Date }
 });
 
 /*************************
