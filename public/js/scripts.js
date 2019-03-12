@@ -30,6 +30,7 @@ let getDocLink = ()=>{
         success: (address)=>{
             $('.url-share').css("visibility", "visible")
             $('input.single-use-link').val(address)
+            $('input.hiddenLink').val(address)
         },
         error: function (xhr, ajaxOptions, thrownError) { //Add these parameters to display the required response
             //alert(xhr.status);
