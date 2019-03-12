@@ -168,3 +168,7 @@ body{
    align-content: center;
    align-items: center;
 }
+
+.subscribe{
+    max-width: 400px;
+}
