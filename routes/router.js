@@ -5,8 +5,7 @@ module.exports = (app)=>{
     const Transfer = require('../models/transfer')
     const jwt = require('jsonwebtoken')
     const fs = require('fs')
-    const site_address = process.env.SITE || "localhost:"+ port
-    const web_address = "http://" + site_address
+    const site_address = process.env.SITE || "http://localhost:"+ port
 
 
 /******************************
@@ -189,8 +188,6 @@ module.exports = (app)=>{
             const valid_time = +Date
             const record_ids = req.body
             const redeemed = false
-            let transfer
-            let user
 
             //Create Security Token
             let token = jwt.sign({ owner_id, valid_time, record_ids }, process.env.SECRETKEY, { expiresIn: "60 days" })
@@ -203,8 +200,9 @@ module.exports = (app)=>{
                 t.records.unshift(key)
                 t.save()
             }
+
             console.log("transfer sec token", t.sec_token)
-            res.send( web_address + '/access/' + t.sec_token)
+            res.send( site_address + '/access/' + t.sec_token)
 
          }
 
