@@ -7,7 +7,7 @@ module.exports = (app)=>{
     const fs = require('fs')
     const site_address = process.env.SITE || "localhost:"+ port
     const web_address = "http://" + site_address
-    
+
 
 /******************************
  *  Main landing page
@@ -59,7 +59,6 @@ module.exports = (app)=>{
         User.findOne({ email: req.body.email }, "+password", function (err, user) {
     
             if (!user) { return res.status(401).send({ message: 'Wrong username or password' }) };
-
 
             user.comparePassword(req.body.password, function (err, isMatch) {
               if (!isMatch) {
