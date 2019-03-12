@@ -11,12 +11,13 @@ module.exports = (app)=>{
         body: message,
         to: phoneNumber,  
         from: process.env.TWILIO_PHONE 
-    }).then((message) => console.log("Message Delivered ", message));
+    }).then((message) => console.log("Message Delivered "));
   }
 
   app.post('/send-link/', (req, res)=>{
-    userName = "James"
+    userName = req.body.username
     if(req.user){
+      console.log("Body", req.body)
       userMessage = userName + ' has a secure document to send you. Retrieve it from this link: '+req.body.hiddenLink
       
       console.log(userMessage)
