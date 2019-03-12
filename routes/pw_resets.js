@@ -12,10 +12,12 @@ module.exports = (app) => {
       domain: process.env.EMAIL_DOMAIN
     }
   }
+
   const nodemailerMailgun = nodemailer.createTransport(mg(auth));
+  
   async function sendResetEmail(email_address, reset_link){
     // After we get the pet so we can grab it's name, then we send the email
-    console.log("Reset link", reset_link)
+    // console.log("Reset link", reset_link)
 
     nodemailerMailgun.sendMail({
       from: 'no-reply@example.com',
@@ -26,9 +28,6 @@ module.exports = (app) => {
         engine: 'handlebars',
         context: {reset_link}
       }
-    }).then(info => {
-      console.log('Response: ' + info);
-      
     }).catch(err => {
       console.log('Error: ' + err);
 
