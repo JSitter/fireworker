@@ -4,5 +4,12 @@
                 <h3>One time use link:</h3>
                 <p>Send this link to the party that should recieve these documents.</p>
                 <input class="single-use-link" value="http//www.reddit.com/r/politics" >
+                <form action="/send-link" method="post">
+                    <input type="hidden" class="hiddenLink" name="link" >
+                    <label for="recipient-phone">Recipients Phone Number</label>
+                    <input type="text" name="recipientphone">
+                    <button class="sms-submit" type="submit">Text to Recipient</button>
+
+                </form>
             </div>
         </section>
