@@ -6,8 +6,9 @@ clickket = ()=>{
 }
 
 addToTransfer = (id)=>{
-    dataid = "li[data-id='"+id+"']"
-    $(dataid).toggleClass('record-selected');
+    console.log("hello transeral")
+    dataid = "a[data-id='"+id+"']"
+    $(dataid).toggleClass('active');
     toggleTransfer(id)
 
 }
