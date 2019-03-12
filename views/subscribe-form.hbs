@@ -1,15 +1,27 @@
-<section class="login-block">
-    <form action="/purchase" method="post">
-      <script
-        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-        data-key={{stripe_api}}
-        data-amount="999"
-        data-name="Stripe.com"
-        data-description="One Month Subscription for Fireworker"
-        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-        data-locale="auto"
-        data-zip-code="true">
-      </script>
-    </form>
-    <br/>
+<header>
+    {{>logo}}
+</header>
+<section class="offer-body">
+    <section class="subscribe">
+        <h2>Subscribe Now</h2>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Blanditiis eum quisquam error esse quasi, a, reprehenderit rem ipsa totam sequi saepe quod ullam eius perspiciatis vero quos facere vitae ad?</p>
+
+        <section class="login-block">
+          <form action="/purchase" method="post">
+            <script
+              src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+              data-key={{stripe_api}}
+              data-amount="999"
+              data-name="Stripe.com"
+              data-description="One Month Subscription for Fireworker"
+              data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+              data-locale="auto"
+              data-zip-code="true">
+            </script>
+          </form>
+          <br/>
+      </section>
+
+    </section>
 </section>
+{{>footer}}
