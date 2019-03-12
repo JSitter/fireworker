@@ -82,8 +82,8 @@ a:active>abbr>i{
     position: relative;
     background-color: rgba(4, 176, 189, 0.92);
     color: white;
-    width: 600px;
-    height: 300px;
+    width: 700px;
+    height: 600px;
     margin-left: 40px;
     margin-top: -200px;
     padding: 75px 50px 10px 50px;
@@ -121,6 +121,7 @@ input.single-use-link{
 
 .user-docs{
     width: 100%;
+    padding: 0px;
 }
 
 .ul-wrapper{

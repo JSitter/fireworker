@@ -46,3 +46,9 @@ form > a{
     margin-left: 10px;
     margin-right: 10px;
 }
+
+button.sms-submit{
+    width: 75;
+    background-color: rgb(28, 155, 153);
+    color: white;
+}
