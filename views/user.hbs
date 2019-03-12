@@ -1,43 +1,44 @@
+<header>
+    {{>logo}}
+    {{>menu}}
+</header>
 <section class="userspace-block">
-    <header>
-        {{>logo}}
-        {{>menu}}
-    </header>
+
     <section class="user-area">
-        {{!-- User Header Area --}}
-        <h3>
-            Hello {{user.fname}},
-        </h3>
-        
-        {{!-- User Documents --}}
-        <section class="user-docs">
-                {{>single-use-link this}}
-  
-                <a href="/upload" >Upload Document</a>
+        <section class="dashboard">
+            {{!-- User Header Area --}}
+            <h3>
+                Hello {{user.fname}},
+            </h3>
+            
+            {{!-- User Documents --}}
+            <section class="user-docs">
 
-                <div class="ul-wrapper">
-                    <table class="docs-block fl-lt">
-                        <thead><tr><th>Your Current Records</th></tr></thead>
-                        <tbody>
+                    {{>single-use-link this}}
+                    
+                    <a href="/upload">Upload New Document</a>
+
+                    <h3>Select the documents to share a link to:</h3>
+                    <div class="ul-wrapper">
+                        <div class="collection">
                             {{#each user.records}}
-                                <tr data-id="{{this._id}}">
-                                    <td>{{this.user_filename}}{{>addTransfer this}}</td>
-                                </tr>
+                                <a 
+                                href="#!" 
+                                data-id="{{this._id}}"
+                                onclick="addToTransfer('{{this._id}}')" 
+                                class="collection-item">
+                                    {{this.user_filename}}
+                                </a>
                             {{/each}}
-                        </tbody>
+                        </div>
 
-
-                    </table>
-                   
-                    <div class="clear"></div>
-                </div>
-                <button class="get-transfer-link clear" onclick="getDocLink()">Get single use link</button>
-                
+                    </div>
+                    <button class="get-transfer-link clear" onclick="getDocLink()">Get single use link</button>
+                    
+            </section>
         </section>
-
     </section>
-    {{!-- Footer Area --}}
-    <footer>
-        Please send us <a href="/subscribe">money</a>.
-    </footer>
+
 </section>
+{{!-- Footer Area --}}
+{{>footer this}}
