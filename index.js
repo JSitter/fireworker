@@ -113,6 +113,7 @@ app.set('view engine', 'hbs');
 require('./routes/router.js')(app);
 require('./routes/pw_resets.js')(app);
 require('./routes/transactions.js')(app);
+require('./routes/sms.js')(app);
 
 // Listen on port
 app.listen(port, function () {
