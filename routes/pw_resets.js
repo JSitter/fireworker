@@ -16,12 +16,12 @@ module.exports = (app) => {
   const nodemailerMailgun = nodemailer.createTransport(mg(auth));
   
   async function sendResetEmail(email_address, reset_link){
-    // After we get the pet so we can grab it's name, then we send the email
+
     // console.log("Reset link", reset_link)
 
     nodemailerMailgun.sendMail({
       from: 'no-reply@example.com',
-      to: email_address, // An array if you have multiple recipients.
+      to: email_address, // This can be an array if there are many.
       subject: 'Fireworker Reset Password Request',
       template: {
         name: 'email.handlebars',
@@ -35,7 +35,7 @@ module.exports = (app) => {
 
   }
 
-  /**************************
+/**************************
  *     Reset Password (GET)
  **************************/
 app.get('/reset-password', (req, res)=>{
