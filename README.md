@@ -41,8 +41,14 @@ npm start
 ![link token](./help_files/fireworkerlink.png)
 
 ## Planned Features
-* Text link to phone number
-* Email verification option for sender
+* Message Flashing
+* Compatibility with iOS
+
+## Version 1.2.0
+* Added password reset through email
+* Added payment option
+* Added ability to send document link through SMS
+* Updated User models to reflect added features
 
 ## Version 1.0.5
 * Fixed db connection bug
@@ -56,11 +62,3 @@ npm start
 ## Bugs to fix 
 * Check on page load if token user id exists in database
 * Check that user can't submit record with no files selected
-
-
-If fireworker doesn't initially work, try removing node_modules folder and reinstall by entering
-
-```
-    npm install
-```
-into the terminal.
