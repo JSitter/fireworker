@@ -4,7 +4,7 @@ module.exports = (app) => {
   const jwt = require('jsonwebtoken');
   const nodemailer = require('nodemailer');
   const mg = require('nodemailer-mailgun-transport');
-  const site_address = process.env.SITE || "localhost:"+ port;
+  const site_address = process.env.SITE || "http://localhost:"+ port;
   const bcrypt = require('bcrypt');
   const auth = {
     auth: {
