@@ -1,7 +1,13 @@
-<section class="offering">
-    <form action="/vaultgate" method="post" encType="multipart/form-data">
-        <input type="file" name="userDocument" />
-        <input type='submit' value='Upload!' />
-    </form>
+<header>
+    {{>logo}}
+</header>
+<section class="offer-body">
+    <section class="offering">
+        <form action="/vaultgate" method="post" encType="multipart/form-data">
+            <input type="file" name="userDocument" />
+            <input type='submit' value='Upload!' />
+        </form>
 
+    </section>
 </section>
+{{>footer}}
