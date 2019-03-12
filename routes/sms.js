@@ -19,6 +19,8 @@ module.exports = (app)=>{
     if(req.user){
       userMessage = userName + ' has a secure document to send you. Retrieve it from this link: '+req.body.hiddenLink
       
+      console.log(userMessage)
+
       sendSMS(req.body.recipientphone, userMessage).catch((err)=>{
         console.log(err)
       })
