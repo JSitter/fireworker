@@ -47,7 +47,7 @@ This app uses the Stripe payment gateway to add the ability for users to donate 
 In order for this to function `PUBLIC_STRIPE_API_KEY` and `PRIVATE_STRIPE_API_KEY` must be set with your Stripe account information.
 
 
-## Runing the Server
+## Running the Server
 
 To run fireworker first startup the mongodb daemon by running
 
