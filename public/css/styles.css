@@ -149,3 +149,22 @@ body{
     font-weight: bold;
 }
 
+
+
+.offering{
+    
+
+    
+    align-content: center;
+    
+}
+
+.offer-body{
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   min-height: 50vh;
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+}
