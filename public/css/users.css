@@ -1,19 +1,39 @@
 
+
+
 header{
-    padding: 50px;
+    width: 100vw;
+    height: auto;
+    padding-top: 20px;
+    clear: both;
+    background-color: #222;
 }
 
-.userspace-block{
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+page-footer p{
+
+    background-color: #151515!important;
+
+    color: #555!important;
 }
+
+.dashboard{
+    background-color: #bfbfbf;
+    padding: 30px;
+    border-radius: 15px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #acacac;
+}
+
+.footer-copyright{
+    background-color: #050505!important;
+}
+
 
 .user-area{
     height: 100%;
     min-height: 300px;
-    background-color: rgb(0, 51, 56);
+    background-color: rgb(204, 200, 200);
     padding: 50px;
 }
 
@@ -70,22 +90,30 @@ a:active>abbr>i{
     position: absolute;
 }
 
-.record-selected>div{
+.record-selected{
     background-color: #d4b501;
     color: white;
 }
 
+.user-docs a{
+    font-weight: bolder;
+    color: rgb(12, 119, 152);
+}
+
 .url-share{
-    z-index: 1000;
-    position: absolute !important;
+    z-index: 4000;
+    position: fixed !important;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    align-items: center;
     visibility: hidden;
-    position: relative;
     background-color: rgba(4, 176, 189, 0.92);
     color: white;
-    width: 700px;
-    height: 600px;
-    margin-left: 40px;
-    margin-top: -200px;
+    max-width: 95vw;
+    min-width: 300px;
+    height: auto;
+    max-height: 95vh;
     padding: 75px 50px 10px 50px;
     border-radius: 30px;
     border-style: solid;
@@ -126,4 +154,18 @@ input.single-use-link{
 
 .ul-wrapper{
     width: 100%;
+}
+
+.collection{
+    border-radius: 5px;
+    max-width: 400px;
+    border-color: #c5c5c5;
+}
+
+.collection-item{
+
+}
+
+.collection-item .active{
+
 }

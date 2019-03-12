@@ -14,14 +14,11 @@ h2{
 
 h3{
     font-weight: bold;
-    font-size: 15px;
+    font-size: .9em;
     margin-left: -10px;
     margin-bottom: 10px;
 }
 
-p{
-    color: #efefef;
-}
 a{
     color: #d1a400
 }

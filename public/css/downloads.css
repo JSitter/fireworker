@@ -20,9 +20,10 @@
 
 .download-area{
     background-color: rgb(0, 51, 56);
-    height: 100%;
-    width: 70%;
+    min-height: 50vh;
+    width: 70vw;
     color: rgb(189, 189, 189);
+    padding: 20px;
 }
 
 .download-warning{
@@ -36,7 +37,7 @@
     margin-left: 20px;
 }
 
-.download-area>h1{
+.download-area>h2{
+    text-align: center;
     font-weight: bold;
-    margin-left: -25px;
 }
