@@ -70,7 +70,8 @@ npm start
 
 ## Planned Features
 * Message Flashing
-* Compatibility with iOS
+* Better Compatibility with Mobile
+* Delete documents by owner
 
 ## Version 1.2.0
 * Added password reset through email
