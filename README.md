@@ -65,8 +65,8 @@ npm start
 
 
 ![index page](./help_files/fireworkermain.png)
-![login page](./help_files/fireworkerlogin.png)
-![link token](./help_files/fireworkerlink.png)
+![dashboard page](./help_files/userdash.png)
+
 
 ## Planned Features
 * Message Flashing
