@@ -61,7 +61,7 @@ app.post('/reset-password', (req, res)=>{
     }}
     ).catch( (err)=>console.log(err));
 
-    const user_reset_link ="http://"+site_address + "/reset/"+pw_reset_token+'/'+req.body.email
+    const user_reset_link =site_address + "/reset/"+pw_reset_token+'/'+req.body.email
     sendResetEmail(req.body.email, user_reset_link).catch((err)=>{
       console.log(err)
     })
