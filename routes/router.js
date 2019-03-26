@@ -132,11 +132,12 @@ module.exports = (app)=>{
             // console.log("This file is " + __filename);
             // console.log("It's located in " + __dirname);
             // The name of the input field is used to retrieve the uploaded file
-
+            
             //save user
             let user;
             const owner_id = req.user
             const userFile = req.files.userDocument;
+            console.log(userFile)
             const local_address = +new Date + ".jpg"
             const local_dir = __dirname + '/../uservault/'
 
