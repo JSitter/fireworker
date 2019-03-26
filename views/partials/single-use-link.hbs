@@ -3,7 +3,7 @@
             <div class="user-link">
                 <h3>One time use link:</h3>
                 <p>Send this link to the party that should recieve these documents.</p>
-                <input class="single-use-link" value="http//www.reddit.com/r/politics" >
+                <input class="single-use-link" value="http//www.reddit.com/r/politics" onClick='this.select();'>
                 <form action="/send-link" method="post">
                     <input type="hidden" class="hiddenLink" name="hiddenLink" >
                     <input type="hidden" class="username" value="{{user.fname}}" name="username"/>

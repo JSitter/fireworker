@@ -19,6 +19,10 @@ h3{
     margin-bottom: 10px;
 }
 
+label{
+    color: #333;
+}
+
 a{
     color: #d1a400
 }
