@@ -5,7 +5,6 @@ module.exports = (app)=>{
     let accountSid = process.env.TWILIO_SID;
     let authToken = process.env.TWILIO_AUTH; 
 
-    var twilio = require('twilio');
     var client = new twilio(accountSid, authToken);
     await client.messages.create({
         body: message,
