@@ -59,6 +59,14 @@ label{
     font-weight: bold;
 }
 
+form.signup > label {
+    color: #ededed;
+}
+
+.login-block label {
+    color: #ededed;
+}
+
 html{
     height: 100%;
 }
