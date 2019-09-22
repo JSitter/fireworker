@@ -10,6 +10,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser')
 const jwt = require('jsonwebtoken');
 const fileUpload = require('express-fileupload');
+const crypto = require('crypto');
 require('dotenv').config();
 
 port = process.env.PORT || 5000
@@ -17,6 +18,15 @@ port = process.env.PORT || 5000
 const uristring = 
   process.env.MONGODB_URI || 
   'mongodb://localhost:27017/fireworker';
+
+const createSecretKey = function(){
+  return crypto.randomBytes(2048).toString('hex');  
+}
+
+if(!process.env.SECRETKEY){
+  // Generate new Secret Key on first run
+  process.env.SECRETKEY = createSecretKey()
+}
 
 //Instantiate express
 const app = express();
