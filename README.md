@@ -24,9 +24,7 @@ npm install
 ## Setup environment variables
 In order for this app to run, a certain number of environment variables must be set. 
 
-This can be set in a file named `.env` in the root, or set somewhere else in the server.
-
-`SECRETKEY` must be set to a number that would be cryptographically secure to use as a hashing function.
+These should be set in the `.env` file in the root directory, or set somewhere else in the server.
 
 ### Twilio Requirements
 In order to work with Twilio, this app needs a few authorization tokens to authenticate with Twilio's services.
@@ -48,7 +46,6 @@ In order for this to function `PUBLIC_STRIPE_API_KEY` and `PRIVATE_STRIPE_API_KE
 
 
 ## Running the Server
-
 To run fireworker first startup the mongodb daemon by running
 
 ``` 
