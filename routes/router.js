@@ -202,7 +202,6 @@ module.exports = (app)=>{
                 t.save()
             }
 
-            console.log("transfer sec token", t.sec_token)
             res.send( site_address + '/access/' + t.sec_token)
 
          }
@@ -235,7 +234,6 @@ module.exports = (app)=>{
             //set transfer document as redeemed
             transfers[0].redeemed = true
             transfers[0].save()
-            console.log(transfers[0].sec_token)
             //set security token for document download
             var downloadToken = jwt.sign({ transfer_token : transfers[0].sec_token }, process.env.SECRETKEY)
             res.cookie('downloadAuth', downloadToken, { maxAge: 900000, httpOnly: true });
