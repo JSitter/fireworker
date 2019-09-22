@@ -1,5 +1,5 @@
 # Fireworker
-### Version 1.0.5 Beta
+
 [![Build Status](https://travis-ci.org/JSitter/fireworker.svg?branch=master)](https://travis-ci.org/JSitter/fireworker)
 [![Coverage Status](https://coveralls.io/repos/github/JSitter/fireworker/badge.svg?branch=master)](https://coveralls.io/github/JSitter/fireworker?branch=master)
 
@@ -69,21 +69,6 @@ npm start
 * Message Flashing
 * Better Compatibility with Mobile
 * Delete documents by owner
-
-## Version 1.2.0
-* Added password reset through email
-* Added payment option
-* Added ability to send document link through SMS
-* Updated User models to reflect added features
-
-## Version 1.0.5
-* Fixed db connection bug
-* Added Materialize
-
-## Version 1.0.1 Beta Updates and Bug Fixes
-* Updated dependency version requirements.
-* Attempting to re-create existing user re-directs to sign in page.
-* Added testing architecture
 
 ## Bugs to fix 
 * Check on page load if token user id exists in database
