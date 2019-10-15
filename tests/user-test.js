@@ -8,9 +8,9 @@ request = request('http://localhost:5000/')
 describe('Login page', function() {
     const app = require('../index');
     it('should return html', function(done) {
-      
+      console.log(done)
       request.get('/login')
-      .expect('Content-Type', 'text/plain; charset=utf-8', done);
+      .expect('Content-Type', 'text/html; charset=utf-8', done);
       
     });
 
