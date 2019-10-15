@@ -54,10 +54,11 @@ app.use(cookieParser());
 //Add bodyParser to App to get post data
 app.use(bodyParser.urlencoded({extended: true}));
 
-// Redirect to https
-http.get('*', function(req, res) {  
-  res.redirect('https://' + req.headers.host + req.url);
-})
+app.use(function(request, response){
+  if(!request.secure){
+    response.redirect("https://" + request.headers.host + request.url);
+  }
+});
 
 /****************************************************
  *  Check for login token on every request
