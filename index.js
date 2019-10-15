@@ -54,10 +54,8 @@ app.use(cookieParser());
 //Add bodyParser to App to get post data
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(function(request, response){
-  if(!request.secure){
-    response.redirect("https://" + request.headers.host + request.url);
-  }
+app.get("*", function(request, response){
+  response.redirect("https://" + request.headers.host + request.url);
 });
 
 /****************************************************
