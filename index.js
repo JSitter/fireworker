@@ -54,9 +54,15 @@ app.use(cookieParser());
 //Add bodyParser to App to get post data
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.get("*", function(request, response){
-  response.redirect("https://" + request.headers.host + request.url);
-});
+// Heroku compliant https redirect
+if(process.env.NODE_ENV === 'production') {
+  app.use((req, res, next) => {
+    if (req.header('x-forwarded-proto') !== 'https')
+      res.redirect(`https://${req.header('host')}${req.url}`)
+    else
+      next()
+  })
+}
 
 /****************************************************
  *  Check for login token on every request
