@@ -1,30 +1,17 @@
-const express = require('express');
-const crypto = require('crypto');
-const process = require('process');
-const mongoose = require('mongoose');
+var path = require('path');
+var express = require('express');
 
-const dburi = process.env.MONGODB_URI || 'mongodb://localhost:27017/fireworker';
-const PORT = process.env.PORT || 8000
+var app = express();
 
-const createSecret = function () {
-    return crypto.randomBytes(2048).toString('hex');
-}
-
-process.env.SECRETKEY = createSecret();
-
-const app = express();
-
-mongoose.connect(dburi);
-//Use Javascript promise instead of mongodb
-mongoose.Promise = global.Promise;
-
-// log errors
-mongoose.connection.on('error', console.error.bind(console, "MongoDB connection error"));
-
-app.get("/", (req, res) => {
-    res.send("Hello World")
+app.use(express.static(path.join(__dirname, 'dist')));
+//Front end routes that may be hit by the back end.  
+app.get('/route/', (req, res)=>{
+  res.redirect("/");
 })
 
-app.listen(PORT, function(){
-    console.log('Listening on port ', PORT);
+
+app.set('port', process.env.PORT || 8080);
+
+var server = app.listen(app.get('port'), function() {
+  console.log('Listening on port ', server.address().port);
 });
