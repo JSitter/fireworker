@@ -1,0 +1,24 @@
+.logo > h1 {
+    color: orange;
+}
+
+.splash {
+    background: #444;
+    min-height: 600px;
+    height: 80vh;
+    padding: 130px;
+}
+.logo { 
+    color: #eee;
+}
+
+.register-button {
+    border-radius: 5px;
+    background-color:#ffa500;
+    color: rgb(34, 34, 12);
+    width: 80px;
+    height: 8px;
+    font-size: .4em;
+    font-weight: 400;
+    padding: 4px 40px;
+}

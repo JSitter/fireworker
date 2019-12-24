@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 
 import './css/style.scss';
+import Splash from './components/splash.jsx';
 
 function App() {
   return (
-    <div>Hello</div>
+    <div>
+      <Splash/>
+    </div>
   )
 }
 

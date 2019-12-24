@@ -42,10 +42,6 @@ UserSchema.pre('save', function(next){
     });
   });
   
-
-  
-  
-  
 /*
   *  Compare Password
   */
