@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
 import './App.scss';
 import Splash from './components/splash/splash.jsx';
+import Dashboard from './components/dashboard/dashboard.jsx';
 
 function App() {
+  const [ user, setUser ] = useState(null);
   return (
     <div>
-      <Splash />
+      { user ? <Dashboard user={user}/> : <Splash setUser={setUser}/> }
     </div>
   )
 }
