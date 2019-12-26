@@ -1,13 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import './css/style.scss';
-import Splash from './components/splash.jsx';
+import './App.scss';
+import Splash from './components/splash/splash.jsx';
 
 function App() {
   return (
     <div>
-      <Splash/>
+      <Splash />
     </div>
   )
 }
