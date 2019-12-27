@@ -26,7 +26,7 @@ module.exports = (app) => {
     app.post('/login', (req, res) => {
         /**
          * Required Parameters:
-         *  req.body.email
+         *  req.body.userName
          *  req.body.password
          * 
          * Optional params:
@@ -35,7 +35,7 @@ module.exports = (app) => {
     
         console.log('Attempted Login');
 
-        User.findOne({email: req.body.email}, (err, user) => {
+        User.findOne({userName: req.body.userName}, (err, user) => {
             if(!user){ return res.status(401).send({ message: 'wrong username or password'})}
 
             user.comparePassword(req.body.password, function(err, match){
@@ -55,11 +55,12 @@ module.exports = (app) => {
     app.post('/register/', (req, res) => {
         /**
          * Required Parameters:
-         *  req.body.email
+         *  req.body.username
          *  req.body.password1
          *  req.body.password2
          * 
          * Optional params:
+         *  req.body.email
          *  req.body.consent
          *  req.body.firstName
          *  req.body.lastName
@@ -68,11 +69,12 @@ module.exports = (app) => {
     
         console.log('Attempted Registration');
         let password = null;
-        let email = null;
+        let userName = null;
         let consent = null;//
         let firstName = null;//
         let lastName = null;//
         let phone = null;//
+        let email = null;
 
         // Don't crash the server when setting values...
         try {
@@ -90,14 +92,20 @@ module.exports = (app) => {
         } catch(err) {
             // silence
         }
+
+        try {
+            email = req.body.email
+        } catch( err ){
+            // silence
+        }
         try{
-            email = req.body.email;
+            userName = req.body.userName;
             if(req.body.password1 != req.body.password2){
                 return res.status(406).send({message: "Passwords don't match"});
             }
             password = req.body.password1;
         }catch(err){
-            res.status(406).send({message: "Email and password Required."});
+            res.status(406).send({message: "userName and password Required."});
         }
         try{
             consent = req.body.consent;
@@ -107,9 +115,9 @@ module.exports = (app) => {
             consent = false;
         }
 
-        User.find({email: email}, (err, user) => {
+        User.find({userName: userName}, (err, user) => {
             if(user.length > 0){
-                return res.status(409).send({message: "Email already exists."});
+                return res.status(409).send({message: "userName already exists."});
             }
             
             if(password.length < 4){
@@ -120,6 +128,7 @@ module.exports = (app) => {
             const acct = {
                 firstName   :   firstName,
                 lastName    :   lastName,
+                userName    :   userName,
                 email       :   email,
                 phone       :   phone,
                 password    :   password,
@@ -144,5 +153,13 @@ module.exports = (app) => {
 
             return res.send(userMap);
         })
+    });
+
+    app.get('/find/:userName', (req, res)=>{
+        console.log("Finding Username...");
+        userName = req.params.userName;
+        User.findOne({userName: userName}).then(user=>{
+            user.length > 0 ? res.send({found:true}) : res.send({found:false});
+        });
     });
 }

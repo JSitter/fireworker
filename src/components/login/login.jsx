@@ -22,7 +22,7 @@ function Login(props){
   };
 
   return (
-    <div className="form-wrapper"> 
+    <div className="form-wrapper login-form-wrapper"> 
     <div className="close-x" onClick={()=>props.setFormState('none')}><i class="fas fa-times"></i></div>
       
       <form action="">
