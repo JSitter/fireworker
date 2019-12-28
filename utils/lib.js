@@ -1,34 +1,47 @@
 // Front end library with access to fetch
 let fetchData = function(url, payload, method){
-  let headers;
+  console.log("Setting Params");
+  let headers, reqParams;
 
   if(method != "POST"){
-    method = "GET"
-    headers = 'application/json';
+
+    reqParams = {
+      method : "GET",
+      mode : "cors",
+      credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
 
   }else{
-    headers = 'application/x-www-form-urlencoded';
-  }
 
   let reqParams = {
-    method : method,
+    method : "POST",
     mode : "cors",
     credentials: "include",
     headers: {
-      'Content-Type': headers,
+      "Content-Type":"application/x-www-form-urlencoded",
     },
     body: JSON.stringify(payload)
   }
-
+}
+  console.log("Fetching username request...", reqParams, " from ", url);
   fetch(url, reqParams).then((response)=>{
     if(response.status != 200){
+      console.log("ERror: ", response)
       throw new Error(response.text);
     }
+    console.log('Response from Server: ', response.status);
     response.json().then((data)=>{
+      console.log("Received data: ", data)
       return data;
     });
   })
-  .catch((err)=>new Error(String(err)));
+  .catch((err)=>{
+    console.log("Error recieved: ", err);
+    new Error(String(err));
+  });
 };
 
 export function userLogin(userName, password1){
@@ -38,4 +51,8 @@ export function userLogin(userName, password1){
 
 export function userRegister(userData){
   return {_uid: "testuserid"}
+}
+
+export function checkUserAvailability(username){
+  console.log("Fetch Return: ", fetchData('localhost:8085/find/'+username, {}, 'GET'));
 }
