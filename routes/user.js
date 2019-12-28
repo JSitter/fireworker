@@ -157,9 +157,15 @@ module.exports = (app) => {
 
     app.get('/find/:userName', (req, res)=>{
         console.log("Finding Username...");
-        userName = req.params.userName;
+        let userName;
+        try{
+            userName = req.params.userName
+        }catch(err){
+            res.status(400).send({message: "Username not provided"});
+        }
+        console.log("username: ", userName);
         User.findOne({userName: userName}).then(user=>{
-            user.length > 0 ? res.send({found:true}) : res.send({found:false});
+            user ? res.send({found:true}) : res.send({found:false});
         });
     });
 }
