@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CheckUsername from '../checkUsername/checkUsername.jsx';
+import {checkUserAvailability} from '../../../utils/lib.js';
 
 import './register.scss';
 
@@ -16,12 +17,13 @@ function Register(props){
     const [viewPass, setViewPass] = useState(false);
     const [viewOptional, setViewOptional] = useState('hide'); // Display: 
     const [formReadyForSubmit, setFormReadyForSubmit] = useState('inactive');
-    const [searchTimestamp, setSearchTimestamp] = useState(0);
+    let [searchTimestamp, setSearchTimestamp] = useState(0);
     const [uniqueUsername, setUniqueUsername] = useState(false); // True with valid response from server
     const [searchUserName, setSearchUserName] = useState('');
     const [ passDisplaySetting, setPassDisplaySetting] = useState('password');
     const [ usernameStatus, setUsernameStatus] = useState('');
     let formElement;
+
     useEffect(function(){
         if(userName.length > 3) {
             // Password must be longer than 6 characters
@@ -36,11 +38,22 @@ function Register(props){
 
     }, [userName, password1, password2, uniqueUsername]);
 
+    // Scroll Effects
     useEffect(function(){
-
         window.onscroll = handleScroll;
         formElement = document.getElementsByClassName("form-element")[0]
+        return ()=>{
+            // unbind scroll event
+        }
     }, []);
+
+    // userName Verification
+    useEffect(function(){
+        
+        const interval = setInterval(
+            verifyUniqueUserName, 1200);
+        return () => clearInterval(interval);
+    }, [userName, searchTimestamp ])
 
 
     function handleScroll(event){
@@ -48,13 +61,21 @@ function Register(props){
     }
 
 
-    function verifyUniqueUserName(userName){
+    function verifyUniqueUserName(){
         if(userName.length > 0){
-            if((new Date().getTime() - searchTimestamp) > 400 ){
-                //check for Username
-                console.log("check Username on server: ", userName);
+            if(searchTimestamp > 0){
+                if((new Date().getTime() - searchTimestamp) > 900 ){
+                    //check for Username
+                    verifyServerUserName();
+                }
             }
-        }
+        }    
+    }
+
+    function verifyServerUserName(){
+        console.log("Checking: ", userName);
+        setSearchTimestamp(0)
+        console.log("Returned Result: ", checkUserAvailability(userName));
     }
 
     function handleUserNameChange(event){
@@ -113,7 +134,7 @@ function Register(props){
             <div className="form-header"><h2>Create New Account</h2></div>
             <form className="form-element">
                 <label htmlFor="userName" className="required-field">User Name</label> <CheckUsername status={usernameStatus} />
-                <input type="text" name="userName" id="userName"></input>
+                <input type="text" name="userName" id="userName" onChange={handleUserNameChange}></input>
 
                 <label htmlFor="password1" className="required-field">Password</label>
                 <input type={passDisplaySetting} name="password1" id="password1"></input>

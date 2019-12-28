@@ -1,0 +1,217 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  font-family: "Heebo", sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Heebo", sans-serif;
+  font-weight: 700;
+  color: #2c2c2c;
+  margin: 0px 30px 0px 30px;
+}
+
+body {
+  background: #e7e7e7;
+  font-size: 30px;
+}
+
+p {
+  font-size: .5em;
+  max-width: 600px;
+}
+
+form {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  width: 90%;
+  overflow: auto;
+  padding-bottom: 100px;
+}
+
+form aside {
+  padding: 30px;
+  font-size: 15px;
+  color: #555;
+  width: 80%;
+  margin-top: -60px;
+}
+
+form label {
+  font-size: 1.1em;
+  font-size: .5em;
+  margin-top: 15px;
+  width: 100%;
+}
+
+form input {
+  width: 100%;
+  margin: 5px;
+  height: 40px;
+  font-size: 25px;
+  line-height: 40px;
+  padding: 0px 15px;
+}
+
+form .check-section {
+  width: 100%;
+}
+
+form .check-section input {
+  position: relative;
+  top: 6px;
+  right: -15px;
+  width: 100%;
+  margin: 10px 0px 10px 30px;
+  height: 50px;
+  font-size: 15px;
+  text-align: right;
+}
+
+form .check-section label {
+  min-width: 10px;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-align: left;
+  vertical-align: middle;
+}
+
+form .check-section span {
+  width: 100%;
+  height: 100%;
+  vertical-align: middle;
+  padding-top: 40px;
+  line-height: 0px;
+}
+
+form .password-hint {
+  font-size: 15px;
+  color: #aaa;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.form-wrapper {
+  border-radius: 5px;
+}
+
+.form-header {
+  margin-top: -200px;
+  padding-top: 200px;
+  background-color: #eee;
+  z-index: 50000;
+}
+
+.close-x {
+  margin: -5px 0px 0px 8px;
+  color: gray;
+  height: 50px;
+  cursor: pointer;
+  z-index: 900000;
+}
+
+.spalink {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.required-info {
+  color: #ff2222;
+}
+
+.required-field::after {
+  content: "*";
+  color: red;
+  margin-left: 5px;
+}
+
+.fa-times {
+  font-size: 20px;
+}
+
+.submit {
+  background-color: #dea336;
+  border-radius: 6px;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+}
+
+.submit:hover {
+  border: none;
+  background: #3e8bac;
+  -webkit-box-shadow: 0px 0px 1px #343434;
+          box-shadow: 0px 0px 1px #343434;
+}
+
+.hide {
+  display: none;
+}
+
+.check-section {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 8fr;
+      grid-template-columns: 1fr 8fr;
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 1em;
+}
+
+.check-section aside {
+  -ms-flex-item-align: start;
+      -ms-grid-row-align: start;
+      align-self: start;
+  -ms-grid-column: 1;
+  -ms-grid-column-span: 2;
+  grid-column: 1/3;
+}
+
+.check-section input {
+  -ms-grid-column-align: start;
+      justify-self: start;
+  -ms-flex-item-align: center;
+      -ms-grid-row-align: center;
+      align-self: center;
+  margin: 50px;
+}
+
+.form-header {
+  width: 100%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr;
+      grid-template-columns: 1fr;
+  padding-left: 30px;
+}
+
+span.deleteicon {
+  position: relative;
+}
+
+span.deleteicon span {
+  position: absolute;
+  display: block;
+  top: 5px;
+  right: 0px;
+  width: 16px;
+  height: 16px;
+  background: url("http://cdn.sstatic.net/stackoverflow/img/sprites.png?v=4") 0 -690px;
+  cursor: pointer;
+}
+
+span.deleteicon input {
+  padding-right: 16px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+input.inactive {
+  background-color: #adadad;
+  color: #ddd;
+}
+/*# sourceMappingURL=App.css.map */
