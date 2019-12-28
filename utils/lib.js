@@ -1,8 +1,7 @@
 // Front end library with access to fetch
 let fetchData = function(url, payload, method){
-  console.log("Setting Params");
+
   return new Promise((resolve, reject)=>{
-    console.log("Promising feedback", url);
     let reqParams;
 
     if(method != "POST"){
@@ -28,28 +27,23 @@ let fetchData = function(url, payload, method){
         body: JSON.stringify(payload)
       }
   }
-    console.log("Url: ", url);
-    console.log("Params: ", reqParams)
-    console.log("Fetch: ", fetch)
-    fetch(url, reqParams).then((response)=>{
-      console.log("Attempting to fetch");
-      if(response.status != 200){
-        console.log("ERror: ", response)
-        throw new Error(response.text);
-      }
-      console.log('Response from Server: ', response.status);
-      response.json().then((data)=>{
-        console.log("Received data: ", data)
-        return data;
-      });
-    })
-    .catch((err)=>{
-      console.log("Error recieved: ", err);
-      new Error(String(err));
-    });
 
+    fetch(url, reqParams).then((response)=>{
+
+      if(response.status != 200){
+        console.log("Error fetching: ", response)
+        reject(response.text);
+      }
+
+      response.json().then((data)=>{
+        resolve(data);
+      });
+
+    }).catch((err)=>{
+      console.log("Error recieved: ", err);
+      reject(String(err));
+    });
   });
-  
 };
 
 export function userLogin(userName, password1){
@@ -62,8 +56,9 @@ export function userRegister(userData){
 }
 
 export function checkUserAvailability(username){
-  console.log("Calling fetching function");
-  fetchData('/find/'+username, {}, 'GET').then((response)=>{
-    console.log("Returned ", response)
-  })
+  return new Promise((resolve, reject)=>{
+    fetchData('/find/'+username, {}, 'GET').then((response)=>{
+      resolve(response)
+    })
+  }).catch((err) => reject(err));
 }

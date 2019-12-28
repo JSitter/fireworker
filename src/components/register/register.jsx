@@ -35,7 +35,6 @@ function Register(props){
                 // passwords must match
             }
         }
-
     }, [userName, password1, password2, uniqueUsername]);
 
     // Scroll Effects
@@ -47,55 +46,35 @@ function Register(props){
         }
     }, []);
 
-    // userName Verification
+    // userName Verification on interval
     useEffect(function(){
-        
         const interval = setInterval(
-            verifyUniqueUserName, 1200);
+            verifyUniqueUserName, 1000);
         return () => clearInterval(interval);
     }, [userName, searchTimestamp ])
-
-    function handleServer(result){
-        console.log("Handling server");
-        fetch('/find/').then((response)=>{
-            console.log("Attempting to fetch");
-            if(response.status != 200){
-            console.log("ERror: ", response)
-            throw new Error(response.text);
-            }
-            console.log('Response from Server: ', response.status);
-            response.json().then((data)=>{
-            console.log("Received data: ", data)
-            result(data);
-            });
-        })
-        .catch((err)=>{
-            console.log("Error recieved: ", err);
-            new Error(String(err));
-        });
-    }
 
     function handleScroll(event){
         formElement.style.margin = "-"+(window.pageYOffset+20)+"px auto 0px auto";
     }
 
-
     function verifyUniqueUserName(){
         if(userName.length > 0){
             if(searchTimestamp > 0){
                 if((new Date().getTime() - searchTimestamp) > 900 ){
+                    setUsernameStatus("busy");
                     //check for Username
-                    verifyServerUserName();
+                    setSearchTimestamp(0);
+
+                    checkUserAvailability(userName).then((response)=>{
+                        if(response.found){
+                            setUsernameStatus('taken');
+                        }else{
+                            setUsernameStatus('available');
+                        }
+                    });
                 }
             }
         }    
-    }
-
-    function verifyServerUserName(){
-        console.log("Checking: ", userName);
-        setSearchTimestamp(0)
-        console.log("Checking Availability");
-        checkUserAvailability(userName);
     }
 
     function handleUserNameChange(event){
