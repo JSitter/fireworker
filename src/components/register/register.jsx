@@ -55,6 +55,25 @@ function Register(props){
         return () => clearInterval(interval);
     }, [userName, searchTimestamp ])
 
+    function handleServer(result){
+        console.log("Handling server");
+        fetch('/find/').then((response)=>{
+            console.log("Attempting to fetch");
+            if(response.status != 200){
+            console.log("ERror: ", response)
+            throw new Error(response.text);
+            }
+            console.log('Response from Server: ', response.status);
+            response.json().then((data)=>{
+            console.log("Received data: ", data)
+            result(data);
+            });
+        })
+        .catch((err)=>{
+            console.log("Error recieved: ", err);
+            new Error(String(err));
+        });
+    }
 
     function handleScroll(event){
         formElement.style.margin = "-"+(window.pageYOffset+20)+"px auto 0px auto";
@@ -75,7 +94,8 @@ function Register(props){
     function verifyServerUserName(){
         console.log("Checking: ", userName);
         setSearchTimestamp(0)
-        console.log("Returned Result: ", checkUserAvailability(userName));
+        console.log("Checking Availability");
+        checkUserAvailability(userName);
     }
 
     function handleUserNameChange(event){
