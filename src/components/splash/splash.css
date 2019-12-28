@@ -1,0 +1,36 @@
+.logo > h1 {
+  color: #ffb300;
+}
+
+.splash {
+  background: #444;
+  min-height: 1800px;
+  height: 80vh;
+  padding: 130px;
+}
+
+.logo {
+  color: #eee;
+}
+
+.register-button {
+  border-radius: 5px;
+  background-color: #ffb300;
+  color: #22220c;
+  width: 180px;
+  height: 8px;
+  font-size: .4em;
+  font-weight: 400;
+  padding: 4px 40px;
+  cursor: pointer;
+}
+
+.cta {
+  min-width: 200px;
+}
+
+.secondary-link {
+  text-decoration: underline;
+  color: #ffb300;
+}
+/*# sourceMappingURL=splash.css.map */

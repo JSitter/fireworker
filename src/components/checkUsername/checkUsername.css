@@ -1,0 +1,12 @@
+div.available {
+  color: #84c622;
+}
+
+div.busy {
+  color: #999;
+}
+
+div.taken > i.fas:before {
+  color: #f0922e;
+}
+/*# sourceMappingURL=checkUsername.css.map */
