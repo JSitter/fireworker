@@ -1,0 +1,11 @@
+div.available {
+  color: rgb(132, 198, 34);
+}
+
+div.busy {
+  color: #999;
+}
+
+div.taken > i.fas:before{
+  color: rgb(240, 146, 46);
+}

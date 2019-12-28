@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import CheckUsername from '../checkUsername/checkUsername.jsx';
+
 import './register.scss';
 
 function Register(props){
+    
     const [userName, setUserName] = useState('');
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('');
@@ -17,7 +20,8 @@ function Register(props){
     const [uniqueUsername, setUniqueUsername] = useState(false); // True with valid response from server
     const [searchUserName, setSearchUserName] = useState('');
     const [ passDisplaySetting, setPassDisplaySetting] = useState('password');
-
+    const [ usernameStatus, setUsernameStatus] = useState('');
+    let formElement;
     useEffect(function(){
         if(userName.length > 3) {
             // Password must be longer than 6 characters
@@ -29,7 +33,20 @@ function Register(props){
                 // passwords must match
             }
         }
+
     }, [userName, password1, password2, uniqueUsername]);
+
+    useEffect(function(){
+
+        window.onscroll = handleScroll;
+        formElement = document.getElementsByClassName("form-element")[0]
+    }, []);
+
+
+    function handleScroll(event){
+        formElement.style.margin = "-"+(window.pageYOffset+20)+"px auto 0px auto";
+    }
+
 
     function verifyUniqueUserName(userName){
         if(userName.length > 0){
@@ -84,29 +101,31 @@ function Register(props){
 
     function handleOptionalFields(){
         if(viewOptional === 'hide'){
-            viewOptional = 'show';
+            setViewOptional('show');
         }else{
-            viewOptional = 'hide';
+            setViewOptional('hide');
         }
     }
 
     return (
         <div className="registration-form form-wrapper">
             <div className="close-x" onClick={()=>props.setFormState('none')}><i class="fas fa-times"></i></div>
-            <form>
-            <label htmlFor="userName" className="required-field">User Name</label>
+            <div className="form-header"><h2>Create New Account</h2></div>
+            <form className="form-element">
+                <label htmlFor="userName" className="required-field">User Name</label> <CheckUsername status={usernameStatus} />
                 <input type="text" name="userName" id="userName"></input>
 
+                <label htmlFor="password1" className="required-field">Password</label>
+                <input type={passDisplaySetting} name="password1" id="password1"></input>
+                
                 <span className="password-hint" onClick={()=>handleViewPassword()} >
                     {passDisplaySetting === "text" ? 'Hide Password' : 'View Password'}
                 </span>
-                <label htmlFor="password1" className="required-field">Password</label>
-                <input type={passDisplaySetting} name="password1" id="password1"></input>
 
                 <label htmlFor="password2" className="required-field">Re Enter Password</label>
                 <input type={passDisplaySetting} name="password2" id="password2"></input>
 
-                <p><span className="spalink" onClick={handleOptionalFields}>{ viewOptional === "hide" ? "Add Profile Information": "Hide Profile Details"}</span></p>
+                <p><span className="spalink" onClick={handleOptionalFields}>{ viewOptional === "hide" ? "+ Add Additional Profile Information": "- Hide Profile Details"}</span></p>
                 <label className={viewOptional} htmlFor="firstName">First Name</label>
                 <input className={viewOptional} type="text" name="firstName" id="firstName"></input>
 
@@ -121,11 +140,11 @@ function Register(props){
 
                 <section className="check-section">
                     <input type="checkbox" id="chk1-label"></input>
-                    <label for="consent">I agree to allow cookies.</label>
-                    <aside>Cookies may be used by this site for authentication purposes. This site does not track you across sites or share any of your personal information.</aside>
+                    <label for="consent"><span>I agree to allow this site to use cookies.</span></label>
+                    <aside>Cookies may be used by this site for authentication purposes. This site does not track you across other sites nor does it share any of your personal information.</aside>
                 </section>
                 
-                <input className={"submit " + formReadyForSubmit} type='submit' />
+                <input className={"submit " + formReadyForSubmit} type='submit' value="Register New Account" />
 
                 <p>Already have an account? <span className="spalink" onClick={()=>props.setFormState('login')} >Login here</span>.</p>
             </form>

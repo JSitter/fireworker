@@ -1,10 +1,12 @@
+$hero-color: #ffb300;
+
 .logo > h1 {
-    color: orange;
+    color: $hero-color;
 }
 
 .splash {
     background: #444;
-    min-height: 600px;
+    min-height: 1800px;
     height: 80vh;
     padding: 130px;
 }
@@ -14,12 +16,21 @@
 
 .register-button {
     border-radius: 5px;
-    background-color:#ffa500;
+    background-color:$hero-color;
     color: rgb(34, 34, 12);
-    width: 80px;
+    width: 180px;
     height: 8px;
     font-size: .4em;
     font-weight: 400;
     padding: 4px 40px;
     cursor: pointer;
+}
+
+.cta {
+    min-width: 200px;
+}
+
+.secondary-link {
+    text-decoration: underline;
+    color: $hero-color;
 }

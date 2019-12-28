@@ -8,15 +8,13 @@ function Splash(){
 
     return (
         <div className="splash">
-            <div className="secondary-menu">
-                <span></span>
-            </div>
             <div className="logo">
                 <h1>Fireworker</h1>
                 <p>Protecting your data.</p>
             </div>
-            <div>
+            <div className="cta">
             <span className="register-button" onClick={()=>setFormState('register')} >Try for Free</span>
+    
             {formState === "register" ? (
                 <Register setFormState={setFormState} />
                 ):("")}
