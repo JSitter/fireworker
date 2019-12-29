@@ -19,34 +19,34 @@ function Register(props){
     const [passwordErrorMessage, setPasswordErrorMessage] = useState(false);
     let [userNameTimeStamp, setSearchTimeStamp] = useState(0);
     const [uniqueUsername, setUniqueUsername] = useState(false); // True with valid response from server
-    const [passwordMatch, setPasswordMatch] = useState(false)
+    const [validPassword, setValidPassword] = useState(false)
     const [passwordTimeStamp, setPasswordTimeStamp] = useState(0);
     const [ passDisplaySetting, setPassDisplaySetting] = useState('password');
     const [ usernameStatus, setUsernameStatus] = useState('');
     let formElement;
 
+    // Check if Form values are valid
     useEffect(function(){
-        console.log("u: ", uniqueUsername);
-        console.log("p: ", passwordMatch);
-        console.log("l: ", userName.length)
-        
+        console.log('Detect change')
         if(userName.length > 0) {
             // Password must be longer than 6 characters
-            if(uniqueUsername && passwordMatch){
+            if(uniqueUsername && validPassword){
                 // Passwords match
                 // REGISTRATION VALID
-                setFormReadyForSubmit('valid-registration');
-                console.log("Ready for submission");
+                setFormReadyForSubmit("valid-registration");
+                console.log("Detect form valid state");
             }else{
-                // passwords must match
-                console.log("passwords don't match")
-                setFormReadyForSubmit('inactive');
+                console.log("Detect Invalid form");
+                setFormReadyForSubmit("inactive");
             }
+        }else{
+            console.log("Detect Invalid form: No Input")
+            setFormReadyForSubmit("inactive");
+
         }
+        
 
-    }, [userName, uniqueUsername, passwordMatch, setFormReadyForSubmit ]);
-
-
+    }, [userName, uniqueUsername, validPassword, setFormReadyForSubmit ]);
 
     // Scroll Effects
     useEffect(function(){
@@ -54,6 +54,7 @@ function Register(props){
         formElement = document.getElementsByClassName("form-element")[0]
         return ()=>{
             // unbind scroll event
+            window.onscroll = ()=>{};
         }
     }, []);
 
@@ -67,7 +68,7 @@ function Register(props){
     // Check if passwords match every 400ms
     useEffect(function(){
         const interval = setInterval(
-            verifyPasswordMatch, 200);
+            verifyPasswordMatch, 300);
         return () => clearInterval(interval);
     }, [password1, password2, passwordTimeStamp])
 
@@ -112,22 +113,22 @@ function Register(props){
                     if(password1 === password2){
                         if(password1.length > 6){
                             
-                            console.log("passwords match");
-                            setPasswordMatch(true);
+                            console.log("Verify Password Match: passwords acceptable");
+                            setValidPassword(true);
                             setPasswordErrorMessage('');
                             
                         }else {
                             console.log("Passwords too short");
                             setPasswordErrorMessage("Passwords must be 7 characters or longer.");
-                            setPasswordMatch(false);
+                            setValidPassword(false);
                         }
                     }else {
-                        console.log("Passwords don't match");
+                        console.log("Verify Password: Passwords don't match");
                         setPasswordErrorMessage("Passwords don't match.");
-                        setPasswordMatch(false);
+                        setValidPassword(false);
                     }
                 }else {
-                    setPasswordMatch(false);
+                    setValidPassword(false);
                     setPasswordErrorMessage('');
                 }
             }
@@ -187,18 +188,27 @@ function Register(props){
     }
 
     function handleRegistrationSubmit(event){
-        console.log('Registering user');
+        
+        event.preventDefault();
+        
+        if(formReadyForSubmit=="valid-registration"){
+            console.log("Registering User")
+        }else {
+            console.log("I laugh at you.")
+        }
+
     }
 
     return (
         <div className="registration-form form-wrapper" action={handleRegistrationSubmit}>
             <div className="close-x" onClick={()=>props.setFormState('none')}><i class="fas fa-times"></i></div>
             <div className="form-header"><h2>Create New Account</h2></div>
-            <form className="form-element">
+            <form className="form-element" onSubmit={handleRegistrationSubmit}>
                 <label htmlFor="userName" className="required-field">User Name</label> <CheckUsername status={usernameStatus} />
                 <input type="text" name="userName" id="userName" onChange={handleUserNameChange}></input>
 
                 <label htmlFor="password1" className="required-field">Password</label>
+                <span>{passwordErrorMessage}</span>
                 <input type={passDisplaySetting} name="password1" id="password1" onChange={handlePass1Change}></input>
                 
                 <span className="password-hint" onClick={()=>handleViewPassword()} >
