@@ -6,23 +6,23 @@ import './register.scss';
 
 function Register(props){
     
-    const [userName, setUserName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password1, setPassword1] = useState('');
-    const [password2, setPassword2] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [phone, setPhone] = useState('');
-    const [consent, setConsent] = useState('');
-    const [viewOptional, setViewOptional] = useState('hide'); // Display: 
-    const [formReadyForSubmit, setFormReadyForSubmit] = useState('inactive');
-    const [passwordErrorMessage, setPasswordErrorMessage] = useState(false);
-    let [userNameTimeStamp, setSearchTimeStamp] = useState(0);
-    const [uniqueUsername, setUniqueUsername] = useState(false); // True with valid response from server
-    const [validPassword, setValidPassword] = useState(false)
-    const [passwordTimeStamp, setPasswordTimeStamp] = useState(0);
-    const [ passDisplaySetting, setPassDisplaySetting] = useState('password');
-    const [ usernameStatus, setUsernameStatus] = useState('');
+    const [ userName, setUserName ] = useState('');
+    const [ email, setEmail ] = useState('');
+    const [ password1, setPassword1 ] = useState('');
+    const [ password2, setPassword2 ] = useState('');
+    const [ firstName, setFirstName ] = useState('');
+    const [ lastName, setLastName ] = useState('');
+    const [ phone, setPhone ] = useState('');
+    const [ consent, setConsent ] = useState('');
+    const [ viewOptional, setViewOptional ] = useState('hide'); // Display: 
+    const [ formReadyForSubmit, setFormReadyForSubmit ] = useState('inactive');
+    const [ passwordErrorMessage, setPasswordErrorMessage ] = useState(false);
+    let [ userNameTimeStamp, setSearchTimeStamp ] = useState(0);
+    const [ uniqueUsername, setUniqueUsername ] = useState(false); // True with valid response from server
+    const [ validPassword, setValidPassword ] = useState(false)
+    const [ passwordTimeStamp, setPasswordTimeStamp ] = useState(0);
+    const [ passDisplaySetting, setPassDisplaySetting ] = useState('password');
+    const [ usernameStatus, setUsernameStatus ] = useState('');
     let formElement;
 
     // Check if Form values are valid
@@ -108,17 +108,14 @@ function Register(props){
                     if(password1 === password2){
                         if(password1.length > 6){
                             
-                            console.log("Verify Password Match: passwords acceptable");
                             setValidPassword(true);
                             setPasswordErrorMessage('');
                             
                         }else {
-                            console.log("Passwords too short");
                             setPasswordErrorMessage("Passwords must be 7 characters or longer.");
                             setValidPassword(false);
                         }
                     }else {
-                        console.log("Verify Password: Passwords don't match");
                         setPasswordErrorMessage("Passwords don't match.");
                         setValidPassword(false);
                     }
@@ -177,8 +174,7 @@ function Register(props){
     }
 
     function handleConsentChange(event){
-        console.log(event.target.checked)
-        setConsent(event.target.checked)
+        setConsent(event.target.checked);
     }
     
     function handleViewPassword(){
