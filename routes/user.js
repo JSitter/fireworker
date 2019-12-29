@@ -25,9 +25,10 @@ module.exports = (app) => {
 
     app.get('/login/', (req, res) => {
         if(req.user){
-            res.send({'fToken':req.user.fToken})
+            let cookie = {'fToken':req.user};
+            return res.send(cookie);
         }else{
-            res.status(401).send({message:"Unauthorized"})
+            return res.status(401).send({message:"Unauthorized"});
         }
     })
 
