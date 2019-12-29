@@ -67,7 +67,7 @@ module.exports = (app) => {
          *  req.body.phone
          */
     
-        console.log('Attempted Registration');
+        console.log('Attempted Registration', req.body);
         let password = null;
         let userName = null;
         let consent = null;//
@@ -104,24 +104,36 @@ module.exports = (app) => {
                 return res.status(406).send({message: "Passwords don't match"});
             }
             password = req.body.password1;
+            if (password.length < 7){
+                return res.status(411).send({message: "Password not long enough"});
+            }
         }catch(err){
-            res.status(406).send({message: "userName and password Required."});
+            return res.status(406).send({message: "userName and password Required."});
         }
         try{
-            consent = req.body.consent;
+            if(req.body.consent === true){
+                consent = true;
+            }else  {
+                consent = false;
+            }
+            
+            console.log("Consent: ", consent);
 
         }catch(err){
             console.log(err)
             consent = false;
         }
+        console.log("Registering User: Attempting to find duplicates.")
 
         User.find({userName: userName}, (err, user) => {
+            console.log("Operation complete- Users found: ", user.length)
             if(user.length > 0){
+                // console.log('Found user: ', user)
                 return res.status(409).send({message: "userName already exists."});
             }
-            
+
             if(password.length < 4){
-                return res.status(406).send({message: "Passwords must be longer than 3 characters."})
+                return res.status(411).send({message: "Passwords must be longer than 6 characters."})
             }
 
             console.log("Creating new user account.");
@@ -156,16 +168,24 @@ module.exports = (app) => {
     });
 
     app.get('/find/:userName', (req, res)=>{
-        console.log("Finding Username...");
-        let userName;
+        let uName;
         try{
-            userName = req.params.userName
+            uName = req.params.userName
         }catch(err){
             res.status(400).send({message: "Username not provided"});
         }
-        console.log("username: ", userName);
-        User.findOne({userName: userName}).then(user=>{
-            user ? res.send({found:true}) : res.send({found:false});
+        console.log({userName: uName});
+        User.find({userName: uName}).then(user=>{
+            console.log(user)
+            user.length > 0 ? res.send({found:true}) : res.send({found:false});
         });
     });
+
+    app.get('/self-destruct/sitter/pi/one/one/zero', (req, res)=>{
+        // Destroy all User database contents
+        User.remove({}, ()=>{
+        console.log("Tears are for children")
+        res.send({message: "Tears are for children."});
+        });
+    })
 }

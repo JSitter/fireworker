@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CheckUsername from '../checkUsername/checkUsername.jsx';
-import {checkUserAvailability} from '../../../utils/lib.js';
+import {checkUserAvailability, registerNewUser} from '../../../utils/lib.js';
 
 import './register.scss';
 
@@ -27,20 +27,16 @@ function Register(props){
 
     // Check if Form values are valid
     useEffect(function(){
-        console.log('Detect change')
         if(userName.length > 0) {
             // Password must be longer than 6 characters
             if(uniqueUsername && validPassword){
                 // Passwords match
                 // REGISTRATION VALID
                 setFormReadyForSubmit("valid-registration");
-                console.log("Detect form valid state");
             }else{
-                console.log("Detect Invalid form");
                 setFormReadyForSubmit("inactive");
             }
         }else{
-            console.log("Detect Invalid form: No Input")
             setFormReadyForSubmit("inactive");
 
         }
@@ -107,7 +103,6 @@ function Register(props){
         if(passwordTimeStamp > 0){
             if(((new Date().getTime() - passwordTimeStamp) > 400)){
                 if(password1.length != 0 && password2.length != 0){
-                    console.log("Verify password");
                     setPasswordTimeStamp(0)
 
                     if(password1 === password2){
@@ -133,6 +128,20 @@ function Register(props){
                 }
             }
         }
+    }
+
+    function registerUser(){
+        let user = {
+            userName    : userName,
+            password1   : password1,
+            password2   : password2,
+            email       : email,
+            consent     : consent,
+            firstName   : firstName,
+            lastName    : lastName,
+            phone       : phone
+        }
+        registerNewUser(user);
     }
 
     function handleUserNameChange(event){
@@ -168,7 +177,8 @@ function Register(props){
     }
 
     function handleConsentChange(event){
-        setConsent(event.target.value)
+        console.log(event.target.checked)
+        setConsent(event.target.checked)
     }
     
     function handleViewPassword(){
@@ -190,11 +200,13 @@ function Register(props){
     function handleRegistrationSubmit(event){
         
         event.preventDefault();
-        
+
         if(formReadyForSubmit=="valid-registration"){
-            console.log("Registering User")
+            registerUser();
+
         }else {
-            console.log("I laugh at you.")
+            console.log("I laugh at you.");
+            // Perform some animation on the input.
         }
 
     }

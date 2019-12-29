@@ -1,6 +1,6 @@
 // Front end library with access to fetch
 let fetchData = function(url, payload, method){
-
+  console.log("Fetching")
   return new Promise((resolve, reject)=>{
     let reqParams;
 
@@ -22,12 +22,13 @@ let fetchData = function(url, payload, method){
         mode : "cors",
         credentials: "include",
         headers: {
-          "Content-Type":"application/x-www-form-urlencoded",
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
       }
   }
-
+    console.log(reqParams)
     fetch(url, reqParams).then((response)=>{
 
       if(response.status != 200){
@@ -51,7 +52,8 @@ export function userLogin(userName, password1){
   return {_uid: "myuseride"}
 }
 
-export function userNewRegister(userData){
+export function registerNewUser(userData){
+  console.log("Library function: Registering User")
   return new Promise((resolve, reject) => {
     fetchData('/register/', userData, 'POST').then((response) => {
       resolve(response);
