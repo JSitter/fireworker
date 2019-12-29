@@ -51,8 +51,12 @@ export function userLogin(userName, password1){
   return {_uid: "myuseride"}
 }
 
-export function userRegister(userData){
-  return {_uid: "testuserid"}
+export function userNewRegister(userData){
+  return new Promise((resolve, reject) => {
+    fetchData('/register/', userData, 'POST').then((response) => {
+      resolve(response);
+    }).catch((err)=>reject(err));
+  });
 }
 
 export function checkUserAvailability(username){
