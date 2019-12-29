@@ -4,7 +4,6 @@ let fetchData = function(url, payload, method){
     let reqParams;
 
     if(method != "POST"){
-
       reqParams = {
         method : "GET",
         mode : "cors",
@@ -14,9 +13,7 @@ let fetchData = function(url, payload, method){
           "Content-Type": "application/json",
         },
       }
-
     }else{
-
       reqParams = {
         method : "POST",
         mode : "cors",
@@ -72,10 +69,8 @@ export function checkUserAvailability(username){
 }
 
 export function getCookie(){
-  console.log("fetch cookie");
   return new Promise((resolve, reject) => {
     fetchData('/login/', {}, 'GET').then((response) => {
-      console.log("Cookie responses: ", response);
       resolve(response);
     }).catch(err => reject(err));
   });
