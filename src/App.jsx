@@ -11,7 +11,6 @@ function App() {
   const [ serverCookie, setServerCookie ] = useState(null);
 
   useEffect(()=>{
-    console.log("First Run")
     getCookie().then((cookie) => {
       setServerCookie(cookie.fToken);
     }).catch((err)=>{
