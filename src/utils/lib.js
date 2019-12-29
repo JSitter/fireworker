@@ -67,7 +67,15 @@ export function registerNewUser(userData){
 export function checkUserAvailability(username){
   return new Promise((resolve, reject)=>{
     fetchData('/find/'+username, {}, 'GET').then((response)=>{
-      resolve(response)
+      resolve(response);
     })
   }).catch((err) => reject(err));
+}
+
+export function getCookie(){
+  return new Promise((resolve, reject) => {
+    fetchData('/login/', {}, 'GET').then((response) => {
+      resolve(response);
+    }).catch(err => reject(err));
+  });
 }
