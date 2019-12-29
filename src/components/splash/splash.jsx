@@ -3,7 +3,7 @@ import Register from '../register/register.jsx';
 import Login from '../login/login.jsx';
 import './splash.scss';
 
-function Splash(){
+function Splash(props){
     const [formState, setFormState] = useState('none');
 
     return (
@@ -16,9 +16,15 @@ function Splash(){
             <span className="register-button" onClick={()=>setFormState('register')} >Try for Free</span>
     
             {formState === "register" ? (
-                <Register setFormState={setFormState} />
+                <Register 
+                    setFormState={setFormState} 
+                    setUser={props.setUser}
+                />
                 ):("")}
-            {formState === "login"? (<Login setFormState={setFormState} />): ""}
+            {formState === "login"? (<Login 
+                                        setFormState={setFormState} 
+                                        setUser={props.setUser}
+                                        />): ""}
             
             </div>
         </div>

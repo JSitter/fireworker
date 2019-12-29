@@ -1,6 +1,5 @@
 // Front end library with access to fetch
 let fetchData = function(url, payload, method){
-  console.log("Fetching")
   return new Promise((resolve, reject)=>{
     let reqParams;
 
@@ -11,6 +10,7 @@ let fetchData = function(url, payload, method){
         mode : "cors",
         credentials: "include",
         headers: {
+          "Accept": "application/json",
           "Content-Type": "application/json",
         },
       }
@@ -22,38 +22,41 @@ let fetchData = function(url, payload, method){
         mode : "cors",
         credentials: "include",
         headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          "Accept": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify(payload)
       }
   }
-    console.log(reqParams)
-    fetch(url, reqParams).then((response)=>{
 
+    fetch(url, reqParams).then((response)=>{
       if(response.status != 200){
-        console.log("Error fetching: ", response)
+        console.log("error text: ", response.text)
         reject(response.text);
       }
 
-      response.json().then((data)=>{
-        resolve(data);
-      });
+    response.json().then((data)=>{
+      resolve(data);
+    });
+
 
     }).catch((err)=>{
-      console.log("Error recieved: ", err);
+      console.log("Error Fetching Resource: ", err)
       reject(String(err));
     });
   });
 };
 
-export function userLogin(userName, password1){
-  console.log("logging in");
-  return {_uid: "myuseride"}
+export function userLogin(userData){
+  return new Promise((resolve, reject) => {
+    fetchData('/login/', userData, 'POST').then((response)=>{
+      resolve(response);
+    }).catch((err)=> {
+      reject(err)});
+  });
 }
 
 export function registerNewUser(userData){
-  console.log("Library function: Registering User")
   return new Promise((resolve, reject) => {
     fetchData('/register/', userData, 'POST').then((response) => {
       resolve(response);

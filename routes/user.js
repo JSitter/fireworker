@@ -18,12 +18,12 @@ module.exports = (app) => {
         Session.findOneAndDelete({userId : user._id}, function(err, session){
             const newSess = new Session({userId : user._id, token: token, valid: true, expire: expiry.getTime()})
             newSess.save();
-            res.send(token)
+            res.send({fToken:token})
         });
 
     }
 
-    app.post('/login', (req, res) => {
+    app.post('/login/', (req, res) => {
         /**
          * Required Parameters:
          *  req.body.userName
@@ -67,7 +67,7 @@ module.exports = (app) => {
          *  req.body.phone
          */
     
-        console.log('Attempted Registration', req.body);
+        console.log('Attempted Registration');
         let password = null;
         let userName = null;
         let consent = null;//
@@ -116,19 +116,14 @@ module.exports = (app) => {
             }else  {
                 consent = false;
             }
-            
-            console.log("Consent: ", consent);
 
         }catch(err){
             console.log(err)
             consent = false;
         }
-        console.log("Registering User: Attempting to find duplicates.")
 
         User.find({userName: userName}, (err, user) => {
-            console.log("Operation complete- Users found: ", user.length)
             if(user.length > 0){
-                // console.log('Found user: ', user)
                 return res.status(409).send({message: "userName already exists."});
             }
 
@@ -155,7 +150,7 @@ module.exports = (app) => {
         });
     });
 
-    app.get('/users', (req, res) => {
+    app.get('/users/', (req, res) => {
         User.find({}, function(err, users) {
             let userMap = {};
 
@@ -174,14 +169,12 @@ module.exports = (app) => {
         }catch(err){
             res.status(400).send({message: "Username not provided"});
         }
-        console.log({userName: uName});
         User.find({userName: uName}).then(user=>{
-            console.log(user)
             user.length > 0 ? res.send({found:true}) : res.send({found:false});
         });
     });
 
-    app.get('/self-destruct/sitter/pi/one/one/zero', (req, res)=>{
+    app.get('/self-destruct/sitter/pi/one/one/zero/', (req, res)=>{
         // Destroy all User database contents
         User.remove({}, ()=>{
         console.log("Tears are for children")
