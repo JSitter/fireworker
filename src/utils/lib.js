@@ -31,8 +31,7 @@ let fetchData = function(url, payload, method){
 
     fetch(url, reqParams).then((response)=>{
       if(response.status != 200){
-        console.log("error text: ", response.text)
-        reject(response.text);
+        reject(response.status);
       }
 
     response.json().then((data)=>{
@@ -73,8 +72,10 @@ export function checkUserAvailability(username){
 }
 
 export function getCookie(){
+  console.log("fetch cookie");
   return new Promise((resolve, reject) => {
     fetchData('/login/', {}, 'GET').then((response) => {
+      console.log("Cookie responses: ", response);
       resolve(response);
     }).catch(err => reject(err));
   });

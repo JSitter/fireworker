@@ -1,8 +1,14 @@
 import React from 'react';
+import './dashboard.scss';
+import TopMenu from '../topMenu/topMenu.jsx';
+import FileUpload from '../fileUpload/fileUpload.jsx';
 
 function Dashboard(props){
   return (
-    <div><p>Dashboard</p></div>
+    <div className="dashboard-wrapper">
+      <TopMenu />
+      <FileUpload />
+    </div>
   )
 }
 
