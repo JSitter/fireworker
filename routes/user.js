@@ -23,6 +23,14 @@ module.exports = (app) => {
 
     }
 
+    app.get('/login/', (req, res) => {
+        if(req.user){
+            res.send({'fToken':req.user.fToken})
+        }else{
+            res.status(401).send({message:"Unauthorized"})
+        }
+    })
+
     app.post('/login/', (req, res) => {
         /**
          * Required Parameters:
