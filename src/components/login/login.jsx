@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { userLogin } from '../../../utils/lib.js';
+import { userLogin } from '../../utils/lib.js';
 import './login.scss';
 
 function Login(props){

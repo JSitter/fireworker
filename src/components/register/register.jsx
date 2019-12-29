@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CheckUsername from '../checkUsername/checkUsername.jsx';
-import {checkUserAvailability, registerNewUser} from '../../../utils/lib.js';
+import {checkUserAvailability, registerNewUser} from '../../utils/lib.js';
 
 import './register.scss';
 
