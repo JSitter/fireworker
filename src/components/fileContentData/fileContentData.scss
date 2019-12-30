@@ -1,0 +1,52 @@
+$hero-color: #ffb300;
+$site-blue: #0cdbe5;
+$site-dark-blue: #2a48ec;
+$site-green: #0add48;
+$site-purple: #6504b5;
+$site-red: #b50043;
+$site-busy: #d7c6a2;
+
+table {
+    border: none;
+    background-color: #0a7cdd;
+    border-radius: 2px;
+    border-spacing: 0px;
+    width: 100%;
+}
+
+tr {
+    border: none!important;
+}
+
+th {
+    font-weight: 700;
+    background: #333;
+    border: none;
+}
+
+td, th {
+    border: none;
+    padding: 8px 18px;
+    text-align: left!important;
+    line-height: 2em;
+    min-width: 20px;
+}
+
+.file-data-wrapper {
+    padding: 0px;
+}
+
+.fa-eye:hover {
+    color: $site-blue;
+}
+
+.fa-trash:hover {
+    color: $site-red!important;
+    font-size: 20px;
+}
+
+.fa-minus-circle {
+    color: #f00150;
+    font-size: 22px;
+    margin-top: 5px;
+}
