@@ -8,7 +8,7 @@
     "start": "node server.js",
     "build": "webpack --mode production",
     "heroku-run-build-script": "webpack",
-    "dev": "webpack --watch",
+    "dev": "webpack --watch --no-uglify",
     "devrun": "nodemon server.js"
   },
   "repository": {
