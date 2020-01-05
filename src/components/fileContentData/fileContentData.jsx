@@ -7,7 +7,7 @@ function FileRow(props){
         <td>{props.rowData.name}</td>
         <td>{props.rowData.size / 1000} Kbytes</td>
         <td>{props.rowData.type || 'n/a'}</td>
-        <td><i class="fas fa-trash"></i></td>
+        <td><i class="fas fa-trash" onClick={()=>props.deleteFile(props.fileIndex)}></i></td>
         </tr>
     )
 }
@@ -15,9 +15,6 @@ function FileRow(props){
 function FileContentData(props){
 
     const [ uploadedFiles, setUploadedFiles ] = useState(null);
-    
-
-
 
     useEffect(()=>{
         if(props.fileData.length > 0){
@@ -28,7 +25,7 @@ function FileContentData(props){
             console.log('Items', items);
 
             for( let i = 0 ; i < props.fileData.length ; i++ ){
-                f.push(<FileRow rowData={files[i]}/>);
+                f.push(<FileRow rowData={files[i] } deleteFile={props.deleteFile} fileIndex={i}/>);
             }
             console.log("*Files:" , files);
             setUploadedFiles(f);
@@ -43,6 +40,7 @@ function FileContentData(props){
                 </tr>
                 {uploadedFiles}
             </table>
+            <span className="upload-button">Upload</span>
         </div>
     );
 }

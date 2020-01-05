@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FileContentData  from '../fileContentData/fileContentData.jsx';
 import './fileUpload.scss';
+import { file } from '@babel/types';
 
 function FileUpload(props){
 
@@ -69,6 +70,19 @@ function FileUpload(props){
         setFileMode('upload');
     }
 
+    function deleteFile(index){
+        const files = [];
+        const items = [];
+        for(let i = 0; i < fileData.length ; i++){
+            if(i != index){
+                files.push(fileData[i]);
+                items.push(itemData[i]);
+            }
+        }
+        setFileData(files);
+        setItemData(items);
+    }
+
     return (
         <div
             id="file-upload"
@@ -83,6 +97,7 @@ function FileUpload(props){
                             fileData={fileData} 
                             itemData={itemData}
                             deleteAllFiles={deleteAllFiles}
+                            deleteFile={deleteFile}
                         /> : '+'
             }
         </div>
