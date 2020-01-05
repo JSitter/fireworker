@@ -12,7 +12,7 @@ var UserSchema = new Schema({
     email           :   { type: String },
     verified        :   { type: Boolean },
     phone           :   { type: String },
-    password        :   { type: String },
+    password        :   { type: String , required: true},
     resetToken      :   { type: String },
     resetRequest    :   { type: String },
     planAmt         :   { type: String },
