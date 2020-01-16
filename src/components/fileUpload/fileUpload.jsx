@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import FileContentData  from '../fileContentData/fileContentData.jsx';
+
 import './fileUpload.scss';
 import { file } from '@babel/types';
 

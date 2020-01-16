@@ -1,0 +1,12 @@
+div.thumb-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    height: 75px;
+    width: 75px;
+}
+
+img.file-thumb {
+    max-height: 75px; 
+}

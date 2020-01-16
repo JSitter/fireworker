@@ -1,7 +1,7 @@
 $hero-color: #ffb300;
 $site-blue: #0cdbe5;
 $site-dark-blue: #2a48ec;
-$site-green: #0add48;
+$site-green: #10d74a;
 $site-purple: #6504b5;
 $site-red: #b50043;
 $site-busy: #d7c6a2;
@@ -11,6 +11,7 @@ table {
     background-color: #0a7cdd;
     border-radius: 2px;
     border-spacing: 0px;
+    max-width: 85vw;
     width: 100%;
 }
 
@@ -32,7 +33,7 @@ tr:hover {
 
 td, th {
     border: none;
-    padding: 8px 18px;
+    padding: 8px 13px;
     text-align: left!important;
     line-height: 2em;
 }
@@ -68,6 +69,10 @@ td, th {
     background-color: #0cbf41;
 }
 
+.upload-button:active {
+    background-color: #0a8a30;
+}
+
 tr.detailed-file-data {
     background-color: #075294!important;
 }
@@ -80,4 +85,5 @@ tr.detailed-file-data :hover {
     overflow: auto;
     
 }
+
 
