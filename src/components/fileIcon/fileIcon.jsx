@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import cog from './cog.svg';
 import './fileIcon.scss';
 
 function FileIcon(props) {
@@ -39,7 +40,7 @@ function FileIcon(props) {
 
     return (
         <div>
-            { imgIcon ?  <div className="thumb-wrapper"><img ref={thumbRef} className="file-thumb"/></div>: <FileThumb fileData={props.fileData}/>}
+            { imgIcon ?  <div className="thumb-wrapper"><img ref={thumbRef} src={cog} className="file-thumb"/></div>: <FileThumb fileData={props.fileData}/>}
         </div>
     )
     
