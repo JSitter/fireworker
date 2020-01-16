@@ -76,7 +76,7 @@ function Login(props){
 
   return (
     <div className="form-wrapper login-form-wrapper"> 
-      <div className="close-x" onClick={()=>props.setFormState('none')}>
+      <div className="close-x" onClick={()=>props.setFormState("none")}>
         <i class="fas fa-times"></i>
       </div>
       <div className="form-header">
@@ -91,7 +91,7 @@ function Login(props){
         <input type={passDisplaySetting} name="password1" id="password1" onChange={handlePassChange}></input>
                 
         <span className="password-hint" onClick={handleViewPassword} >
-            {passDisplaySetting === "text" ? 'Hide Password' : 'View Password'}
+            {passDisplaySetting === "text" ? "Hide Password" : "View Password"}
         </span>
 
         <section className="check-section">
@@ -99,7 +99,7 @@ function Login(props){
           <label for="consent">I agree to allow cookies.</label>
           <aside>Cookies may be used by this site for authentication purposes. <br/>This site does not track you across sites or share any of your personal information.</aside>
         </section>
-        <input className="submit" type='submit' value="Log In"/>
+        <input className="submit" type="submit" value="Log In"/>
       </form>
       <p><span className="spalink" onClick={()=>props.setFormState("register")}> Create New Account...</span></p>
     </div>
