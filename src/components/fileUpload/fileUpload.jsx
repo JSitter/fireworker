@@ -43,6 +43,8 @@ function FileUpload(props){
     }
 
     function onDropHandler(event){
+        event.preventDefault();
+        event.stopPropagation();
         setFileDropBoxStyle('busy');
         let files = event.dataTransfer.files; // FileList object.
         let items = event.dataTransfer.items // Items 
@@ -50,9 +52,6 @@ function FileUpload(props){
         setFileMode("upload-details")
         setFileData(files);
         setItemData(items);
-
-    event.preventDefault();
-    event.stopPropagation();
     }
 
     function deleteAllFiles(){
